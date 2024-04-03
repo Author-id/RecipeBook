@@ -21,5 +21,5 @@ test:
     script:
         - pip install -r requirements/test.txt
         - cp .env.test.template .env
-        - cd lyceum
+        - cd recipebook
         - python manage.py test

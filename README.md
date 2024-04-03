@@ -1,4 +1,4 @@
-# Проект lyceum
+# Проект Recipe Book
 
 ![Статус пайплайна](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2/badges/main/pipeline.svg)
 
