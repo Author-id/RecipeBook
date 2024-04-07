@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users.apps.UsersConfig",
     # add apps here
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
@@ -258,6 +259,9 @@ else:
         import logging
 
         logging.warning("Secret key is not set in product mode")
+
+
+AUTH_USER_MODEL = "users.User"
 
 
 __all__ = []
