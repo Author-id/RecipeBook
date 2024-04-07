@@ -12,7 +12,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from sorl.thumbnail import get_thumbnail
 
-
 from core.utils import Thumbnail
 
 
@@ -24,7 +23,7 @@ if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
 
 class UserManager(BaseUserManager):
     @classmethod
-    def normalize_email(cls, email) -> str:
+    def normalize_email(cls, email: str | None) -> str:
         email = super().normalize_email(email)
         if "@" not in email:
             return email
@@ -46,7 +45,7 @@ class UserManager(BaseUserManager):
 
         return f"{username}@{domain}"
 
-    def get_queryset(self):
+    def get_queryset(self) -> models.query.QuerySet:
         return (
             super()
             .get_queryset()
@@ -55,17 +54,17 @@ class UserManager(BaseUserManager):
             )
         )
 
-    def active(self):
+    def active(self) -> models.query.QuerySet:
         return self.get_queryset().filter(is_active=True)
 
-    def by_mail(self, mail: str):
+    def by_mail(self, mail: str) -> "User | None":
         mail = self.normalize_email(mail)
         try:
             return cast(User, self.get_queryset().get(email=mail))
         except User.DoesNotExist:
             return None
 
-    def by_username(self, username: str):
+    def by_username(self, username: str) -> "User | None":
         try:
             return cast(User, self.get_queryset().get(username=username))
         except User.DoesNotExist:
@@ -133,7 +132,7 @@ class Profile(models.Model):
         blank=True,
     )
 
-    def get_image_32x32(self):
+    def get_image_32x32(self) -> Thumbnail | None:
         if not self.image:
             return None
 
@@ -145,7 +144,7 @@ class Profile(models.Model):
             format="PNG",
         )
 
-    def get_image_128x128(self):
+    def get_image_128x128(self) -> Thumbnail | None:
         if not self.image:
             return None
 
@@ -157,7 +156,7 @@ class Profile(models.Model):
             format="PNG",
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"#{self.pk}"
 
     class Meta:
