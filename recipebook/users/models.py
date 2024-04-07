@@ -4,6 +4,7 @@ from typing import Any, cast
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User as AuthUser
 from django.db import models
 from django.db.models.signals import post_save
@@ -11,7 +12,6 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from sorl.thumbnail import get_thumbnail
-from django.contrib.auth.models import AbstractUser
 
 
 UserBase = get_user_model()  # type: Any
