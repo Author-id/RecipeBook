@@ -12,8 +12,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from sorl.thumbnail import get_thumbnail
 
-from core.utils import Thumbnail
-
 
 UserBase = get_user_model()  # type: Any
 if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
@@ -132,7 +130,7 @@ class Profile(models.Model):
         blank=True,
     )
 
-    def get_image_32x32(self) -> Thumbnail | None:
+    def get_image_32x32(self):
         if not self.image:
             return None
 
@@ -144,7 +142,7 @@ class Profile(models.Model):
             format="PNG",
         )
 
-    def get_image_128x128(self) -> Thumbnail | None:
+    def get_image_128x128(self):
         if not self.image:
             return None
 
