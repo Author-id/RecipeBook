@@ -24,7 +24,7 @@ if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
 
 class UserManager(BaseUserManager):
     @classmethod
-    def normalize_email(cls, email: str | None) -> str:
+    def normalize_email(cls, email) -> str:
         email = super().normalize_email(email)
         if "@" not in email:
             return email
@@ -46,7 +46,7 @@ class UserManager(BaseUserManager):
 
         return f"{username}@{domain}"
 
-    def get_queryset(self) -> models.query.QuerySet:
+    def get_queryset(self):
         return (
             super()
             .get_queryset()
@@ -55,17 +55,17 @@ class UserManager(BaseUserManager):
             )
         )
 
-    def active(self) -> models.query.QuerySet:
+    def active(self):
         return self.get_queryset().filter(is_active=True)
 
-    def by_mail(self, mail: str) -> "User | None":
+    def by_mail(self, mail: str):
         mail = self.normalize_email(mail)
         try:
             return cast(User, self.get_queryset().get(email=mail))
         except User.DoesNotExist:
             return None
 
-    def by_username(self, username: str) -> "User | None":
+    def by_username(self, username: str):
         try:
             return cast(User, self.get_queryset().get(username=username))
         except User.DoesNotExist:
@@ -133,7 +133,7 @@ class Profile(models.Model):
         blank=True,
     )
 
-    def get_image_32x32(self) -> Thumbnail | None:
+    def get_image_32x32(self):
         if not self.image:
             return None
 
@@ -145,7 +145,7 @@ class Profile(models.Model):
             format="PNG",
         )
 
-    def get_image_128x128(self) -> Thumbnail | None:
+    def get_image_128x128(self):
         if not self.image:
             return None
 
@@ -157,7 +157,7 @@ class Profile(models.Model):
             format="PNG",
         )
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"#{self.pk}"
 
     class Meta:
