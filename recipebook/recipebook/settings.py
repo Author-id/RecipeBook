@@ -41,11 +41,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users.apps.UsersConfig",
-    # add apps here
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "mdeditor",
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [

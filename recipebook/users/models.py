@@ -11,6 +11,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
 from sorl.thumbnail import get_thumbnail
+from django.contrib.auth.models import AbstractUser
 
 
 UserBase = get_user_model()  # type: Any
@@ -69,7 +70,7 @@ class UserManager(BaseUserManager):
             return None
 
 
-class User(UserBase):
+class User(AbstractUser, UserBase):
     objects: UserManager["User"] = UserManager()
 
     class Meta:
