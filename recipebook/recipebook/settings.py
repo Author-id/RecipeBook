@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "core.apps.CoreConfig",
+    "users.apps.UsersConfig",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "mdeditor",
-    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "users.User"
 # add here AUTHENTICATION_BACKENDS
 
 LOGIN_URL = "/users/login/"
@@ -258,9 +260,6 @@ else:
         import logging
 
         logging.warning("Secret key is not set in product mode")
-
-
-AUTH_USER_MODEL = "users.User"
 
 
 __all__ = []
