@@ -1,4 +1,5 @@
-from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import UserManager as BaseUserManager
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy
@@ -107,12 +108,16 @@ class User(AbstractUser):
 
         return gettext_lazy("users__model__user__image__no_image")
 
-    image_tmb.short_description = gettext_lazy("users__model__user__image__preview")
+    image_tmb.short_description = gettext_lazy(
+        "users__model__user__image__preview",
+    )
     image_tmb.allow_tags = True
 
     class Meta:
         verbose_name = gettext_lazy("users__model__user__verbose_name")
-        verbose_name_plural = gettext_lazy("users__model__user__verbose_name_plural")
+        verbose_name_plural = gettext_lazy(
+            "users__model__user__verbose_name_plural",
+        )
 
 
 __all__ = []

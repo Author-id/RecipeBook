@@ -43,7 +43,9 @@ def render_markdown(text: str) -> str:
     return MD.convert(text)
 
 
-def make_admin_fieldsets(fields: list[str]) -> list[tuple[None, dict[str, list[str]]]]:
+def make_admin_fieldsets(
+    fields: list[str],
+) -> list[tuple[None, dict[str, list[str]]]]:
     return [(None, {"fields": fields})]
 
 
