@@ -21,7 +21,7 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 #: .\core\apps.py:7
 msgid "app__core"
-msgstr "корень"
+msgstr "Ядро"
 
 #: .\recipebook\settings.py:131
 msgid "Russian"
@@ -34,7 +34,7 @@ msgstr "Английский"
 #. Translators: Заголовок страницы
 #: .\templates\base.html:22 .\templates\includes\header.html:8
 msgid "title"
-msgstr "заголовок"
+msgstr "Книга рецептов"
 
 #: .\templates\base.html:32
 msgid "empty_base_template"
@@ -42,15 +42,15 @@ msgstr "пусто"
 
 #: .\templates\includes\form.html:47
 msgid "form__send"
-msgstr "форма отправки"
+msgstr "Отправить"
 
 #: .\templates\includes\header.html:25
 msgid "nav_menu__admin"
-msgstr "админка"
+msgstr "Админка"
 
 #: .\users\apps.py:8
 msgid "app__users"
-msgstr "пользователи"
+msgstr "Пользователи"
 
 #: .\users\models.py:56
 msgid "users__model__user__email"
@@ -74,24 +74,24 @@ msgstr "дата деактивации"
 
 #: .\users\models.py:109
 msgid "users__model__user__image__no_image"
-msgstr "без аватарки"
+msgstr "Без аватарки"
 
 #: .\users\models.py:112
 msgid "users__model__user__image__preview"
-msgstr "заставка"
+msgstr "предпросмотр"
 
 #: .\users\models.py:117
 msgid "users__model__user__verbose_name"
-msgstr "пользователя"
+msgstr "пользователь"
 
 #: .\users\models.py:119
 msgid "users__model__user__verbose_name_plural"
-msgstr "пользователь"
+msgstr "пользователи"
 
 #: .\users\views.py:41
 msgid "signup__mail__subject"
-msgstr "регистрация"
+msgstr "Регистрация"
 
 #: .\users\views.py:49
 msgid "signup__success_message"
-msgstr "успешная регистрация"
+msgstr "Для завершения регистрации пройдите по ссылке, отправленной вам на почту: %(email)s"

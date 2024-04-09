@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: .\core\apps.py:7
 msgid "app__core"
-msgstr ""
+msgstr "Core"
 
 #: .\recipebook\settings.py:131
 msgid "Russian"
@@ -32,7 +32,7 @@ msgstr "English"
 #. Translators: Заголовок страницы
 #: .\templates\base.html:22 .\templates\includes\header.html:8
 msgid "title"
-msgstr "title"
+msgstr "Recipe book"
 
 #: .\templates\base.html:32
 msgid "empty_base_template"
@@ -44,11 +44,11 @@ msgstr "sending form"
 
 #: .\templates\includes\header.html:25
 msgid "nav_menu__admin"
-msgstr "admin menu"
+msgstr "Admin page"
 
 #: .\users\apps.py:8
 msgid "app__users"
-msgstr "users"
+msgstr "Users"
 
 #: .\users\models.py:56
 msgid "users__model__user__email"
@@ -56,7 +56,7 @@ msgstr "email"
 
 #: .\users\models.py:60
 msgid "users__model__user__image"
-msgstr "user image"
+msgstr "avatar"
 
 #: .\users\models.py:66
 msgid "users__model__user__trusted"
@@ -92,4 +92,4 @@ msgstr "registration"
 
 #: .\users\views.py:49
 msgid "signup__success_message"
-msgstr "successful registration"
+msgstr "To complete your registration, follow the link sent to your email: %(email)s"
