@@ -1,8 +1,8 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-#from recipes.models import Recipe
+from recipes.models import Recipe
 
 
 class Comment(models.Model):
@@ -51,3 +51,5 @@ class Rate(models.Model):
     def __str__(self):
         return "{} rating by {}".format(self.value, self.author)
 
+
+__all__ = []
