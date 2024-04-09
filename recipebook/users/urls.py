@@ -8,11 +8,16 @@ from django.contrib.auth.forms import (
 from django.urls import path, reverse_lazy
 
 from core.forms import add_styles_to_form
-
+from users import views as u_views
 
 app_name = "users"
 
 urlpatterns = [
+    path(
+        "signup/",
+        u_views.SignUpView.as_view(),
+        name="signup",
+    ),
     path(
         "login/",
         views.LoginView.as_view(
