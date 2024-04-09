@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
+    "feedback.apps.FeedbackConfig",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "mdeditor",
