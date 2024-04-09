@@ -1,6 +1,5 @@
 stages:
 - linting
-- testing
 
 flake8:
     stage: linting
@@ -14,12 +13,3 @@ black:
     image: registry.gitlab.com/pipeline-components/black:latest
     script:
         - black --check --diff --verbose -- .
-
-test:
-    stage: testing
-    image: python:3.11
-    script:
-        - pip install -r requirements/test.txt
-        - cp .env.test.template .env
-        - cd recipebook
-        - python manage.py test

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # add apps here
+    "core.apps.CoreConfig",
+    "users.apps.UsersConfig",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "mdeditor",
@@ -117,7 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# add here AUTHENTICATION_BACKENDS
+AUTH_USER_MODEL = "users.User"
+AUTHENTICATION_BACKENDS = [
+    "users.backends.AuthenticationBackend",
+]
 
 LOGIN_URL = "/users/login/"
 LOGIN_REDIRECT_URL = "/"

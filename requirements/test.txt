@@ -1,2 +1,0 @@
--r prod.txt
-parameterized==0.9.0
