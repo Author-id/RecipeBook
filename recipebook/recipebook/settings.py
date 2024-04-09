@@ -119,7 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "users.User"
-# add here AUTHENTICATION_BACKENDS
+AUTHENTICATION_BACKENDS = [
+    "users.backends.AuthenticationBackend",
+]
 
 LOGIN_URL = "/users/login/"
 LOGIN_REDIRECT_URL = "/"

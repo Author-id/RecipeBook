@@ -1,6 +1,5 @@
 from typing import Any
 
-from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from core.forms import BaseForm
@@ -16,10 +15,8 @@ class SignUpForm(UserCreationForm, BaseForm):
         return self.cleaned_data
 
     class Meta(UserCreationForm.Meta):
+        model = models.User
         fields = ["username", "email"]
-        widgets = {
-            "email": forms.EmailInput(attrs={"required": "required"}),
-        }
 
 
-__all__: list[str] = []
+__all__ = []

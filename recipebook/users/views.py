@@ -1,17 +1,22 @@
+from datetime import timedelta
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import gettext
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView, View
 
 from users.forms import SignUpForm
+from users.models import User
 
 
 class SignUpView(FormView):
@@ -51,4 +56,49 @@ class SignUpView(FormView):
         return super().form_valid(form)
 
 
-__all__: list[str] = []
+class ActivateView(View):
+    def get(
+        self,
+        request: HttpRequest,
+        uidb64: str,
+        token: str,
+    ) -> HttpResponse:
+        user = get_user(uidb64)
+
+        if user is None or not default_token_generator.check_token(
+            user,
+            token,
+        ):
+            messages.error(request, gettext("activate__error_message"))
+            return redirect(reverse("users:activate_done"))
+
+        if user.deactivation_date:
+            if user.deactivation_date < timezone.now() - timedelta(
+                days=7,
+            ):
+                messages.error(request, gettext("activate__old_message"))
+                return redirect(reverse("users:activate_done"))
+        elif user.date_joined < timezone.now() - timedelta(hours=12):
+            messages.error(request, gettext("activate__old_message"))
+            return redirect(reverse("users:activate_done"))
+
+        user.is_active = True
+        user.save()
+
+        messages.success(request, gettext("activate__success_message"))
+        return redirect(reverse("users:activate_done"))
+
+
+class ActivateDoneView(TemplateView):
+    template_name = "users/activate_done.html"
+
+
+def get_user(uidb64: str) -> User | None:
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        return User.objects.get(pk=uid)
+    except Exception:
+        return None
+
+
+__all__ = []

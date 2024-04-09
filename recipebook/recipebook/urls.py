@@ -5,8 +5,8 @@ from django.urls import include, path, URLPattern, URLResolver
 
 
 urlpatterns: list[URLResolver | URLPattern] = [
-    path("admin/", admin.site.urls),
     path("users/", include("users.urls")),
+    path("admin/", admin.site.urls),
     path("auth/", include("django.contrib.auth.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
     path("mdeditor/", include("mdeditor.urls")),

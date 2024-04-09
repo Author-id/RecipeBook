@@ -20,4 +20,4 @@ def add_attribute(field: BoundField, css: SafeText) -> SafeText:
     return field.as_widget(attrs=attrs)
 
 
-__all__: list[str] = []
+__all__ = []

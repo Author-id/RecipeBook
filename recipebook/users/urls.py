@@ -19,6 +19,16 @@ urlpatterns = [
         name="signup",
     ),
     path(
+        "activate/<uidb64>/<token>",
+        u_views.ActivateView.as_view(),
+        name="activate",
+    ),
+    path(
+        "activate/",
+        u_views.ActivateDoneView.as_view(),
+        name="activate_done",
+    ),
+    path(
         "login/",
         views.LoginView.as_view(
             template_name="users/login.html",
@@ -83,4 +93,4 @@ urlpatterns = [
 ]
 
 
-__all__: list[str] = []
+__all__ = []
