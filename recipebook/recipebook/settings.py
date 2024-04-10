@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "feedback.apps.FeedbackConfig",
+    "recipes.apps.RecipesConfig",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "mdeditor",

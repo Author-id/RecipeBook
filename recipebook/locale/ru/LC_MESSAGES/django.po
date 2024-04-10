@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-09 20:35+0300\n"
+"POT-Creation-Date: 2024-04-10 20:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,169 +20,255 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\recipebook\core\apps.py:7
+#: .\core\apps.py:7
 msgid "app__core"
 msgstr "Ядро"
 
-#: .\recipebook\recipebook\settings.py:133
+#: .\feedback\apps.py:8
+msgid "app__feedback"
+msgstr ""
+
+#: .\feedback\models.py:30
+#, python-brace-format
+msgid "comment__by {self.author} on {self.recipe}"
+msgstr ""
+
+#: .\feedback\models.py:38
+msgid "rating__rating_choices__hate"
+msgstr ""
+
+#: .\feedback\models.py:39
+msgid "rating__rating_choices__dislike"
+msgstr ""
+
+#: .\feedback\models.py:40
+msgid "rating__rating_choices__neutral"
+msgstr ""
+
+#: .\feedback\models.py:41
+msgid "rating__rating_choices__like"
+msgstr ""
+
+#: .\feedback\models.py:42
+msgid "rating__rating_choices__love"
+msgstr ""
+
+#: .\feedback\models.py:65
+#, python-brace-format
+msgid "{self.value} rated__by {self.author}"
+msgstr ""
+
+#: .\recipebook\settings.py:135
 msgid "Russian"
 msgstr "Русский"
 
-#: .\recipebook\recipebook\settings.py:134
+#: .\recipebook\settings.py:136
 msgid "English"
 msgstr "Английский"
 
+#: .\recipes\apps.py:8
+#, fuzzy
+#| msgid "app__core"
+msgid "app__recipes"
+msgstr "Ядро"
+
+#: .\recipes\models.py:40
+msgid "recipes__level_choices__easy"
+msgstr "лёкий"
+
+#: .\recipes\models.py:41
+msgid "recipes__level_choices__normal"
+msgstr "нормальный"
+
+#: .\recipes\models.py:42
+msgid "recipes__level_choices__hard"
+msgstr "тяжелый"
+
+#: .\recipes\models.py:43
+msgid "recipes__level_choices__extreme"
+msgstr "экстремальный"
+
+#: .\recipes\models.py:126
+msgid "recipes__unit_choices__gram"
+msgstr "грамм"
+
+#: .\recipes\models.py:127
+msgid "recipes__unit_choices__kilogram"
+msgstr "килограмм"
+
+#: .\recipes\models.py:128
+msgid "recipes__unit_choices__liter"
+msgstr "литр"
+
+#: .\recipes\models.py:129
+msgid "recipes__unit_choices__milliliter"
+msgstr "миллилитр"
+
+#: .\recipes\models.py:130
+msgid "recipes__unit_choices__thing"
+msgstr "штука"
+
+#: .\recipes\models.py:131
+msgid "recipes__unit_choices__tea_spoon"
+msgstr "чайная ложка"
+
+#: .\recipes\models.py:132
+msgid "recipes__unit_choices__piece"
+msgstr "кусочек"
+
+#: .\recipes\models.py:133
+msgid "recipes__unit_choices__table_spoon"
+msgstr "столовая ложка"
+
 #. Translators: Заголовок страницы
-#: .\recipebook\templates\base.html:22
-#: .\recipebook\templates\includes\header.html:8
+#: .\templates\base.html:22 .\templates\includes\header.html:8
 msgid "title"
 msgstr "Книга рецептов"
 
-#: .\recipebook\templates\base.html:32
+#: .\templates\base.html:32
 msgid "empty_base_template"
 msgstr "пусто"
 
-#: .\recipebook\templates\includes\form.html:47
+#: .\templates\includes\form.html:47
 msgid "form__send"
 msgstr "Отправить"
 
-#: .\recipebook\templates\includes\header.html:25
+#: .\templates\includes\header.html:25
 msgid "nav_menu__admin"
 msgstr "Админка"
 
-#: .\recipebook\templates\includes\header.html:40
+#: .\templates\includes\header.html:40
 msgid "header__user__change_password"
 msgstr "Сменить пароль"
 
-#: .\recipebook\templates\includes\header.html:42
+#: .\templates\includes\header.html:42
 msgid "header__user__logout"
 msgstr "Выйти"
 
-#: .\recipebook\templates\includes\header.html:48
+#: .\templates\includes\header.html:48
 msgid "header__user__login"
 msgstr "Войти"
 
-#: .\recipebook\templates\includes\header.html:51
+#: .\templates\includes\header.html:51
 msgid "header__user__signup"
 msgstr "Зарегистрироваться"
 
-#: .\recipebook\templates\users\activate_done.html:5
-#: .\recipebook\templates\users\activate_done.html:9
+#: .\templates\users\activate_done.html:5
+#: .\templates\users\activate_done.html:9
 msgid "activate_done__title"
 msgstr "Активация аккаунта"
 
-#: .\recipebook\templates\users\deactivation_email.html:2
-#: .\recipebook\templates\users\signup_email.html:2
+#: .\templates\users\deactivation_email.html:2
+#: .\templates\users\signup_email.html:2
 msgid "signup_email__greet"
 msgstr "Уважаемый"
 
-#: .\recipebook\templates\users\deactivation_email.html:4
+#: .\templates\users\deactivation_email.html:4
 msgid "deactivation_email__text"
 msgstr ""
 "Ваш аккаунт был заблокирован из-за слишком большого чила неудачных попыток "
 "входа. Чтобы разблокировать свой аккаунт, перейдите по ссылке:"
 
-#: .\recipebook\templates\users\deactivation_email.html:7
-#: .\recipebook\templates\users\password_reset_email.html:10
-#: .\recipebook\templates\users\signup_email.html:7
+#: .\templates\users\deactivation_email.html:7
+#: .\templates\users\password_reset_email.html:10
+#: .\templates\users\signup_email.html:7
 msgid "password_reset_email__thanks"
 msgstr "Спасибо, что воспользовались нашим сайтом!"
 
-#: .\recipebook\templates\users\deactivation_email.html:9
-#: .\recipebook\templates\users\password_reset_email.html:12
-#: .\recipebook\templates\users\signup_email.html:9
+#: .\templates\users\deactivation_email.html:9
+#: .\templates\users\password_reset_email.html:12
+#: .\templates\users\signup_email.html:9
 #, python-format
 msgid "password_reset_email__team %(site_name)s"
 msgstr "Команда сайта %(site_name)s"
 
-#: .\recipebook\templates\users\login.html:5
-#: .\recipebook\templates\users\login.html:9
+#: .\templates\users\login.html:5 .\templates\users\login.html:9
 msgid "login__title"
 msgstr "Вход"
 
-#: .\recipebook\templates\users\login.html:20
+#: .\templates\users\login.html:20
 msgid "login__submit"
 msgstr "Войти"
 
-#: .\recipebook\templates\users\login.html:22
+#: .\templates\users\login.html:22
 msgid "signup__reset_password"
 msgstr "Сбросить пароль"
 
-#: .\recipebook\templates\users\password_change.html:5
-#: .\recipebook\templates\users\password_change.html:9
+#: .\templates\users\password_change.html:5
+#: .\templates\users\password_change.html:9
 msgid "password_change__title"
 msgstr "Смена пароля"
 
-#: .\recipebook\templates\users\password_change.html:13
+#: .\templates\users\password_change.html:13
 msgid "password_change__submit"
 msgstr "Сменить пароль"
 
-#: .\recipebook\templates\users\password_change_done.html:5
-#: .\recipebook\templates\users\password_change_done.html:9
+#: .\templates\users\password_change_done.html:5
+#: .\templates\users\password_change_done.html:9
 msgid "password_change_done__title"
 msgstr "Пароль изменён"
 
-#: .\recipebook\templates\users\password_reset.html:5
-#: .\recipebook\templates\users\password_reset.html:9
+#: .\templates\users\password_reset.html:5
+#: .\templates\users\password_reset.html:9
 msgid "password_reset__title"
 msgstr "Восстановление пароля"
 
-#: .\recipebook\templates\users\password_reset.html:12
+#: .\templates\users\password_reset.html:12
 msgid "password_reset__hint"
 msgstr ""
 "Забыли пароль? Введите свой адрес электронной почты ниже, и мы вышлем вам "
 "инструкцию, как установить новый пароль."
 
-#: .\recipebook\templates\users\password_reset.html:13
+#: .\templates\users\password_reset.html:13
 msgid "password_reset__submit"
 msgstr "Восстановить"
 
-#: .\recipebook\templates\users\password_reset_complete.html:5
+#: .\templates\users\password_reset_complete.html:5
 msgid "password_reset_complete__title"
 msgstr "Пароль восстановлен"
 
-#: .\recipebook\templates\users\password_reset_complete.html:11
+#: .\templates\users\password_reset_complete.html:11
 msgid "password_reset_complete__text"
 msgstr "Ваш пароль установлен. Теперь вы можете продолжить и войти в систему."
 
-#: .\recipebook\templates\users\password_reset_complete.html:12
+#: .\templates\users\password_reset_complete.html:12
 msgid "password_reset_complete__login"
 msgstr "Войти"
 
-#: .\recipebook\templates\users\password_reset_confirm.html:6
+#: .\templates\users\password_reset_confirm.html:6
 msgid "password_reset_confirm__title"
 msgstr "Восстановление пароля"
 
-#: .\recipebook\templates\users\password_reset_confirm.html:14
+#: .\templates\users\password_reset_confirm.html:14
 msgid "password_reset_confirm__text"
 msgstr ""
 "Пожалуйста, введите свой новый пароль дважды, чтобы мы могли убедиться, что "
 "вы ввели его правильно."
 
-#: .\recipebook\templates\users\password_reset_confirm.html:23
+#: .\templates\users\password_reset_confirm.html:23
 msgid "password_reset_confirm__new_password"
 msgstr "Новый пароль:"
 
-#: .\recipebook\templates\users\password_reset_confirm.html:36
+#: .\templates\users\password_reset_confirm.html:36
 msgid "password_reset_confirm__confirm_password"
 msgstr "Подтвердите пароль:"
 
-#: .\recipebook\templates\users\password_reset_confirm.html:48
+#: .\templates\users\password_reset_confirm.html:48
 msgid "password_reset_confirm__change_password"
 msgstr "Изменить пароль"
 
-#: .\recipebook\templates\users\password_reset_confirm.html:58
+#: .\templates\users\password_reset_confirm.html:58
 msgid "password_reset_confirm__error"
 msgstr ""
 "Ссылка для сброса пароля была недействительной, возможно, потому, что она "
 "уже использовалась. Пожалуйста, запросите новый сброс пароля."
 
-#: .\recipebook\templates\users\password_reset_done.html:5
-#: .\recipebook\templates\users\password_reset_done.html:9
+#: .\templates\users\password_reset_done.html:5
+#: .\templates\users\password_reset_done.html:9
 msgid "password_reset_done__title"
 msgstr "Восстановление пароля"
 
-#: .\recipebook\templates\users\password_reset_done.html:13
+#: .\templates\users\password_reset_done.html:13
 msgid "password_reset_done__text"
 msgstr ""
 "<p>Письмо с инструкциями по восстановлению пароля отправлено</p><p>Мы "
@@ -192,98 +278,97 @@ msgstr ""
 "убедитесь, что вы ввели адрес с которым Вы зарегистрировались, и проверьте "
 "папку со спамом.</p>"
 
-#: .\recipebook\templates\users\password_reset_email.html:2
+#: .\templates\users\password_reset_email.html:2
 #, python-format
 msgid "password_reset_email__explain %(site_name)s"
 msgstr ""
 "Вы получаете это электронное письмо, потому что запросили сброс пароля для "
 "своей учетной записи пользователя по адресу %(site_name)s."
 
-#: .\recipebook\templates\users\password_reset_email.html:4
+#: .\templates\users\password_reset_email.html:4
 msgid "password_reset_email__please"
 msgstr "Пожалуйста, перейдите на следующую страницу и выберите новый пароль:"
 
-#: .\recipebook\templates\users\password_reset_email.html:8
+#: .\templates\users\password_reset_email.html:8
 msgid "password_reset_email__username"
 msgstr "Ваше имя пользователя, на случай, если вы забыли:"
 
-#: .\recipebook\templates\users\signup.html:5
-#: .\recipebook\templates\users\signup.html:9
+#: .\templates\users\signup.html:5 .\templates\users\signup.html:9
 msgid "signup__title"
 msgstr "Регистрация"
 
-#: .\recipebook\templates\users\signup.html:12
+#: .\templates\users\signup.html:12
 msgid "signup__submit"
 msgstr "Зарегистрироваться"
 
-#: .\recipebook\templates\users\signup_email.html:4
+#: .\templates\users\signup_email.html:4
 msgid "signup_email__text"
 msgstr ""
 "Вы зарегистрировались на нашем сайте, перейдите по ссылке, чтобы завершить "
 "регистрацию:"
 
-#: .\recipebook\users\apps.py:8
+#: .\users\apps.py:8
 msgid "app__users"
 msgstr "Пользователи"
 
-#: .\recipebook\users\backends.py:76
+#: .\users\backends.py:76
 msgid "deactivation_email__subject"
 msgstr "Блокировка аккаунта"
 
-#: .\recipebook\users\models.py:56
+#: .\users\models.py:56
 msgid "users__model__user__email"
 msgstr "почта"
 
-#: .\recipebook\users\models.py:60
+#: .\users\models.py:60
 msgid "users__model__user__image"
 msgstr "аватарка"
 
-#: .\recipebook\users\models.py:66
+#: .\users\models.py:66
 msgid "users__model__user__trusted"
 msgstr "доверенный пользователь"
 
-#: .\recipebook\users\models.py:70
+#: .\users\models.py:70
 msgid "users__model__user__attempts_count"
 msgstr "количество попыток входа"
 
-#: .\recipebook\users\models.py:74
+#: .\users\models.py:74
 msgid "users__model__user__deactivation_date"
 msgstr "дата деактивации"
 
-#: .\recipebook\users\models.py:109
+#: .\users\models.py:109
 msgid "users__model__user__image__no_image"
 msgstr "Без аватарки"
 
-#: .\recipebook\users\models.py:112
+#: .\users\models.py:112
 msgid "users__model__user__image__preview"
 msgstr "предпросмотр"
 
-#: .\recipebook\users\models.py:117
+#: .\users\models.py:117
 msgid "users__model__user__verbose_name"
 msgstr "пользователь"
 
-#: .\recipebook\users\models.py:119
+#: .\users\models.py:119
 msgid "users__model__user__verbose_name_plural"
 msgstr "пользователи"
 
-#: .\recipebook\users\views.py:46
+#: .\users\views.py:46
 msgid "signup__mail__subject"
 msgstr "Регистрация"
 
-#: .\recipebook\users\views.py:54
+#: .\users\views.py:54
 msgid "signup__success_message"
 msgstr ""
 "Для завершения регистрации пройдите по ссылке, отправленной вам на почту: "
 "%(email)s"
 
-#: .\recipebook\users\views.py:72
+#: .\users\views.py:72
 msgid "activate__error_message"
 msgstr "Недействительная ссылка"
 
-#: .\recipebook\users\views.py:79 .\recipebook\users\views.py:82
+#: .\users\views.py:79 .\users\views.py:82
 msgid "activate__old_message"
 msgstr "Недействительная ссылка: срок действия истёк"
 
-#: .\recipebook\users\views.py:88
+#: .\users\views.py:88
 msgid "activate__success_message"
 msgstr "Ваш аккаунт успешно активирован!"
