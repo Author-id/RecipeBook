@@ -172,7 +172,7 @@ git clone https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2.git
 ### Загрузка
 
 ```console
-cd lyceum
+cd recipebook
 python3 manage.py loaddata fixtures/data.json
 cp -r fixtures/media media
 ```
@@ -180,7 +180,7 @@ cp -r fixtures/media media
 для Windows:
 
 ```console
-cd lyceum
+cd recipebook
 python manage.py loaddata fixtures\data.json
 xcopy fixtures\media media /s /Y /i
 ```
@@ -188,7 +188,8 @@ xcopy fixtures\media media /s /Y /i
 ### Создание
 
 ```console
-cd lyceum
+cd recipebook
+mkdir fixtures
 python3 -Xutf8 manage.py dumpdata [...<app>] -o fixtures/data.json --indent 4
 rmdir -r fixtures/media
 rsync -a --exclude={'cache/'} media fixtures/media
@@ -197,7 +198,8 @@ rsync -a --exclude={'cache/'} media fixtures/media
 для Windows:
 
 ```console
-cd lyceum
+cd recipebook
+mkdir fixtures
 python -Xutf8 manage.py dumpdata [...<app>] -o fixtures\data.json --indent 4
 rmdir fixtures\media /s /q
 echo cache\ > exc.txt
