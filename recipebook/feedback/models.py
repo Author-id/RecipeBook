@@ -1,37 +1,10 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from recipebook.recipes.models import Recipe
+from mdeditor.fields import MDTextField
 
-
-class Comment(models.Model):
-    author = models.ForeignKey(
-        User,
-        related_name="comments",
-        verbose_name="деятель",
-        on_delete=models.CASCADE,
-    )
-    recipe = models.ForeignKey(
-        Recipe,
-        related_name="comments",
-        verbose_name="рецепт",
-        on_delete=models.CASCADE,
-    )
-    created = models.DateTimeField(
-        verbose_name="создан",
-        auto_now_add=True,
-    )
-    updated = models.DateTimeField(
-        verbose_name="обновлен",
-        auto_now=True,
-    )
-
-    def __str__(self):
-        return _(f"comment__by {self.author} on {self.recipe}")
-
-    class Meta:
-        verbose_name = "комментарий"
-        verbose_name_plural = "комментарии"
+from core.utils import render_markdown
+from recipes.models import Recipe
+from users.models import User
 
 
 class RatingChoices(models.IntegerChoices):
@@ -42,31 +15,77 @@ class RatingChoices(models.IntegerChoices):
     LOVE = 5, _("rating__rating_choices__love")
 
 
+class Comment(models.Model):
+    author = models.ForeignKey(
+        User,
+        related_name="comments",
+        verbose_name=_("model__foreign__author"),
+        on_delete=models.CASCADE,
+    )
+    recipe = models.ForeignKey(
+        Recipe,
+        related_name="comments",
+        verbose_name=_("model__foreign__recipe"),
+        on_delete=models.CASCADE,
+    )
+    created = models.DateTimeField(
+        verbose_name=_("model__created"),
+        auto_now_add=True,
+    )
+    updated = models.DateTimeField(
+        verbose_name=_("model__updated"),
+        auto_now=True,
+    )
+    text = MDTextField(
+        max_length=2047,
+        verbose_name=_("feedback__model__comment__text"),
+    )
+
+    class Meta:
+        verbose_name = _("feedback__model__comment__verbose_name")
+        verbose_name_plural = _(
+            "feedback__model__comment__verbose_name_plural",
+        )
+
+    def __str__(self):
+        return _("feedback__model__comment__str") % {
+            "id": self.id,
+            "author": self.author_id,
+            "recipe": self.recipe_id,
+        }
+
+    def get_rendered_text(self) -> str:
+        return render_markdown(self.text)
+
+
 class Rate(models.Model):
     author = models.ForeignKey(
         User,
         related_name="ratings",
-        verbose_name="автор",
+        verbose_name=_("model__foreign__author"),
         on_delete=models.CASCADE,
     )
     recipe = models.ForeignKey(
         Recipe,
         related_name="ratings",
-        verbose_name="рецепт",
+        verbose_name=_("model__foreign__recipe"),
         on_delete=models.CASCADE,
     )
-    value = models.CharField(
-        max_length=7,
-        verbose_name="оценка",
-        choices=RatingChoices,
+    value = models.IntegerField(
+        verbose_name=_("feedback__model__rate__value"),
+        choices=RatingChoices.choices,
     )
 
-    def __str__(self):
-        return _(f"{self.value} rated__by {self.author}")
-
     class Meta:
-        verbose_name = "оценка"
-        verbose_name_plural = "оценки"
+        verbose_name = _("feedback__model__rate__verbose_name")
+        verbose_name_plural = _("feedback__model__rate__verbose_name_plural")
+
+    def __str__(self):
+        return _("feedback__model__rated__str") % {
+            "id": self.id,
+            "author": self.author_id,
+            "recipe": self.recipe_id,
+        }
 
 
 __all__ = []

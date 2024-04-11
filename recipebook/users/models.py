@@ -2,10 +2,10 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager as BaseUserManager
 from django.db import models
 from django.utils.safestring import mark_safe
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _
 from sorl.thumbnail import get_thumbnail
 
-from core.utils import Thumbnail
+from core.utils import RandomFileName, Thumbnail
 
 
 class UserManager(BaseUserManager):
@@ -53,28 +53,34 @@ class User(AbstractUser):
     objects: UserManager["User"] = UserManager()
 
     email = models.EmailField(
-        verbose_name=gettext_lazy("users__model__user__email"),
+        verbose_name=_("users__model__user__email"),
         unique=True,
     )
     image = models.ImageField(
-        verbose_name=gettext_lazy("users__model__user__image"),
-        upload_to="users/image/",
+        verbose_name=_("users__model__user__image"),
+        upload_to=RandomFileName("users/image/"),
         null=True,
         blank=True,
     )
     trusted = models.BooleanField(
-        verbose_name=gettext_lazy("users__model__user__trusted"),
+        verbose_name=_("users__model__user__trusted"),
         default=False,
     )
     attempts_count = models.PositiveIntegerField(
-        verbose_name=gettext_lazy("users__model__user__attempts_count"),
+        verbose_name=_("users__model__user__attempts_count"),
         default=0,
     )
     deactivation_date = models.DateTimeField(
-        verbose_name=gettext_lazy("users__model__user__deactivation_date"),
+        verbose_name=_("users__model__user__deactivation_date"),
         null=True,
         blank=True,
     )
+
+    class Meta:
+        verbose_name = _("users__model__user__verbose_name")
+        verbose_name_plural = _(
+            "users__model__user__verbose_name_plural",
+        )
 
     def get_image_32x32(self) -> Thumbnail | None:
         if not self.image:
@@ -106,18 +112,10 @@ class User(AbstractUser):
                 f'<img src="{self.get_image_128x128().url}"',
             )
 
-        return gettext_lazy("users__model__user__image__no_image")
+        return _("model__image__no_image")
 
-    image_tmb.short_description = gettext_lazy(
-        "users__model__user__image__preview",
-    )
+    image_tmb.short_description = _("model__image__preview")
     image_tmb.allow_tags = True
-
-    class Meta:
-        verbose_name = gettext_lazy("users__model__user__verbose_name")
-        verbose_name_plural = gettext_lazy(
-            "users__model__user__verbose_name_plural",
-        )
 
 
 __all__ = []

@@ -1,172 +1,259 @@
-from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from mdeditor.fields import MDTextField
+from sorl.thumbnail import get_thumbnail
 
 
-class Category(models.Model):
-    name = models.CharField(
-        verbose_name="название",
-        max_length=50,
-    )
-
-    class Meta:
-        verbose_name = "категория"
-        verbose_name_plural = "категории"
+from core.utils import RandomFileName, render_markdown, Thumbnail
+from users.models import User
 
 
-class Kitchen(models.Model):
-    name = models.CharField(
-        verbose_name="название",
-        max_length=100,
-    )
-
-    class Meta:
-        verbose_name = "кухня"
-        verbose_name_plural = "кухни"
-
-
-class Ingredient(models.Model):
-    name = models.CharField(
-        verbose_name="название",
-        max_length=255,
-    )
-
-    class Meta:
-        verbose_name = "ингредиент"
-        verbose_name_plural = "ингредиенты"
-
-
-class Level(models.IntegerChoices):
+class RecipeLevel(models.IntegerChoices):
     EASY = 1, _("recipes__level_choices__easy")
     NORMAL = 2, _("recipes__level_choices__normal")
     HARD = 3, _("recipes__level_choices__hard")
     EXTREME = 4, _("recipes__level_choices__extreme")
 
 
-class Recipe(models.Model):
-    title = models.CharField(
-        verbose_name="заголовок",
-        max_length=200,
-    )
-    author = models.ForeignKey(
-        User,
-        verbose_name="автор",
-        related_name="recipe",
-        on_delete=models.CASCADE,
-    )
-    created = models.DateTimeField(
-        verbose_name="дата создания",
-        auto_now_add=True,
-        null=True,
-    )
-    updated = models.DateTimeField(
-        verbose_name="дата изменения",
-        auto_now=True,
-        null=True,
-    )
-    category = models.ForeignKey(
-        Category,
-        related_name="recipe",
-        verbose_name="категория",
-        on_delete=models.SET_NULL,
-        null=True,
-    )
-    kitchen = models.ForeignKey(
-        Kitchen,
-        related_name="recipe",
-        verbose_name="кухня",
-        on_delete=models.SET_NULL,
-        null=True,
-    )
-    ingredients = models.ManyToManyField(
-        Ingredient,
-        related_name="recipe",
-        verbose_name="ингредиент",
-    )
-    instruction = models.TextField(
-        verbose_name="инструкция",
-    )
-    main_image = models.ImageField(
-        verbose_name="главное изображение",
-        upload_to="recipes/",
-    )
-    images = models.ManyToManyField(
-        "AdditionalImage",
-        related_name="recipe",
-        verbose_name="фотографии",
-        blank=True,
-    )
-    level = models.CharField(
-        max_length=50,
-        choices=Level,
-        verbose_name="уровень сложности",
-    )
-    time = models.PositiveIntegerField(
-        verbose_name="время готовки",
-    )
-    comments = models.ManyToManyField(
-        "Comment",
-        related_name="recipe",
-        verbose_name="комментарий",
-        blank=True,
-    )
-    rates = models.ManyToManyField(
-        "Rate",
-        related_name="recipe",
-        verbose_name="оценки",
-        blank=True,
+class IngredientUnit(models.TextChoices):
+    G = "G", _("recipes__unit_choices__grams")
+    KG = "KG", _("recipes__unit_choices__kilogramme")
+    L = "L", _("recipes__unit_choices__litre")
+    ML = "ML", _("recipes__unit_choices__millilitre")
+    PIECE = "PIECE", _("recipes__unit_choices__piece")
+    PINCH = "PINCH", _("recipes__unit_choices__pinch")
+    TEASPOON = "TEASPOON", _("recipes__unit_choices__tea_spoon")
+    TABLESPOON = "TABLESPOON", _("recipes__unit_choices__table_spoon")
+    EXTREME = 4, _("recipes__level_choices__extreme")
+
+
+class RecipeState(models.TextChoices):
+    PUBLISHED = "PUB", _("recipes__recipe_state__published")
+    MODERATED = "MOD", _("recipes__recipe_state__moderated")
+    REJECTED = "REJ", _("recipes__recipe_state__rejected")
+
+
+class Category(models.Model):
+    name = models.CharField(
+        verbose_name=_("recipes__model__category__name"),
+        max_length=127,
     )
 
     class Meta:
-        verbose_name = "рецепт"
-        verbose_name_plural = "рецепты"
+        verbose_name = _("recipes__model__category__verbose_name")
+        verbose_name_plural = _(
+            "recipes__model__category__verbose_name_plural",
+        )
+
+    def __str__(self):
+        return self.name
 
 
-class UnitChoices(models.IntegerChoices):
-    GRAM = 1, _("recipes__unit_choices__gram")
-    KILOGRAM = 2, _("recipes__unit_choices__kilogram")
-    LITER = 3, _("recipes__unit_choices__liter")
-    MILLILITER = 4, _("recipes__unit_choices__milliliter")
-    THING = 3, _("recipes__unit_choices__thing")
-    TEASPOON = 4, _("recipes__unit_choices__tea_spoon")
-    PIECE = 5, _("recipes__unit_choices__piece")
-    TABLESPOON = 4, _("recipes__unit_choices__table_spoon")
+class Kitchen(models.Model):
+    name = models.CharField(
+        verbose_name=_("recipes__model__kitchen__name"),
+        max_length=127,
+    )
+
+    class Meta:
+        verbose_name = _("recipes__model__kitchen__verbose_name")
+        verbose_name_plural = _("recipes__model__kitchen__verbose_name_plural")
+
+    def __str__(self):
+        return self.name
+
+
+class Ingredient(models.Model):
+    name = models.CharField(
+        verbose_name=_("recipes__model__ingredient__name"),
+        max_length=127,
+    )
+
+    class Meta:
+        verbose_name = _("recipes__model__ingredient__verbose_name")
+        verbose_name_plural = _(
+            "recipes__model__ingredient__verbose_name_plural",
+        )
+
+    def __str__(self):
+        return self.name
+
+
+class Recipe(models.Model):
+    title = models.CharField(
+        verbose_name=_("recipes__model__recipe__title"),
+        max_length=255,
+    )
+    author = models.ForeignKey(
+        User,
+        related_name="recipes",
+        verbose_name=_("model__foreign__author"),
+        on_delete=models.CASCADE,
+    )
+    created = models.DateTimeField(
+        verbose_name=_("model__created"),
+        auto_now_add=True,
+    )
+    updated = models.DateTimeField(
+        verbose_name=_("model__updated"),
+        auto_now=True,
+    )
+    state = models.CharField(
+        max_length=3,
+        verbose_name=_("recipes__model__recipe__state"),
+        choices=RecipeState.choices,
+        default=RecipeState.MODERATED,
+    )
+    categories = models.ManyToManyField(
+        Category,
+        related_name="recipes",
+        verbose_name=_("model__foreign__categories"),
+        blank=True,
+    )
+    kitchen = models.ForeignKey(
+        Kitchen,
+        related_name="recipes",
+        verbose_name=_("model__foreign__kitchen"),
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    instruction = MDTextField(
+        verbose_name=_("recipes__model__recipe__instruction"),
+        max_length=8191,
+    )
+    main_image = models.ImageField(
+        verbose_name=_("recipes__model__recipe__main_image"),
+        upload_to=RandomFileName("recipes/main_image/"),
+        blank=True,
+        null=True,
+    )
+    level = models.IntegerField(
+        choices=RecipeLevel.choices,
+        verbose_name=_("recipes__model__recipe__level"),
+    )
+    time = models.PositiveIntegerField(
+        verbose_name=_("recipes__model__recipe__time"),
+    )
+
+    class Meta:
+        verbose_name = _("recipes__model__recipe__verbose_name")
+        verbose_name_plural = _("recipes__model__recipe__verbose_name_plural")
+
+    def __str__(self):
+        if len(self.title) > 100:
+            return self.title[:100] + "..."
+
+        return self.title
+
+    def get_rendered_instruction(self) -> str:
+        return render_markdown(self.instruction)
+
+    def get_image_500(self) -> Thumbnail:
+        return get_thumbnail(self.main_image, "500", quality=85)
+
+    def get_image_128x128(self) -> Thumbnail:
+        return get_thumbnail(
+            self.main_image,
+            "128x128",
+            crop="center",
+            quality=51,
+        )
+
+    def image_tmb(self) -> str:
+        if self.main_image:
+            return mark_safe(
+                f'<img src="{self.get_image_128x128().url}"',
+            )
+
+        return _("model__image__no_image")
+
+    image_tmb.short_description = _("model__image__preview")
+    image_tmb.allow_tags = True
 
 
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name="recipe ingredients",
-        verbose_name="рецепт",
+        related_name="ingredients",
+        verbose_name=_("model__foreign__recipe"),
     )
-    ingredient = models.CharField(
-        max_length=200,
-        verbose_name="ингредиент",
+    ingredient = models.ForeignKey(
+        Ingredient,
+        on_delete=models.CASCADE,
+        verbose_name=_("model__foreign__ingredient"),
     )
     count = models.FloatField(
-        verbose_name="количество ингредиентов",
+        verbose_name=_("recipes__model__recipe_ingredient__count"),
+        validators=[
+            MinValueValidator(0),
+        ],
     )
     unit = models.CharField(
-        max_length=200,
-        verbose_name="единица измерения",
-        choices=UnitChoices,
+        max_length=12,
+        verbose_name=_("recipes__model__recipe_ingredient__unit"),
+        choices=IngredientUnit.choices,
     )
 
     class Meta:
-        verbose_name = "ингредиент"
-        verbose_name_plural = "ингредиенты"
+        unique_together = ("recipe", "ingredient")
+        verbose_name = _("recipes__model__recipe_ingredient__verbose_name")
+        verbose_name_plural = _(
+            "recipes__model__recipe_ingredient__verbose_name_plural",
+        )
+
+    def __str__(self):
+        return _("recipes__model__recipe_ingredient__str") % {
+            "id": self.id,
+            "ingredient": self.ingredient_id,
+            "recipe": self.recipe_id,
+        }
 
 
 class AdditionalImage(models.Model):
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name="images",
+        verbose_name=_("model__foreign__recipe"),
+    )
     image = models.ImageField(
-        upload_to="recipes/additional/",
-        verbose_name="изображение",
+        upload_to=RandomFileName("recipes/additional/"),
+        verbose_name=_("recipes__model__additional_image__image"),
     )
 
     class Meta:
-        verbose_name = "изображение"
-        verbose_name_plural = "изображения"
+        db_table = "additional_image"
+        verbose_name = _("recipes__model__additional_image__verbose_name")
+        verbose_name_plural = _(
+            "recipes__model__additional_image__verbose_name_plural",
+        )
+
+    def __str__(self):
+        return _("recipes__model__additional_image__str") % {
+            "id": self.id,
+            "recipe": self.recipe_id,
+        }
+
+    def get_image_500(self) -> Thumbnail:
+        return get_thumbnail(self.image, "500", quality=85)
+
+    def get_image_128x128(self) -> Thumbnail:
+        return get_thumbnail(self.image, "128x128", crop="center", quality=51)
+
+    def image_tmb(self) -> str:
+        if self.image:
+            return mark_safe(
+                f'<img src="{self.get_image_128x128().url}"',
+            )
+
+        return _("model__image__no_image")
+
+    image_tmb.short_description = _("model__image__preview")
+    image_tmb.allow_tags = True
 
 
-__all__: list[str] = []
+__all__ = []
