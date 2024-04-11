@@ -1,3 +1,8 @@
+from pathlib import Path
+from typing import Any
+import uuid
+
+from django.utils.deconstruct import deconstructible
 from markdown import Markdown
 from pymdownx import emoji
 
@@ -47,6 +52,18 @@ def make_admin_fieldsets(
     fields: list[str],
 ) -> list[tuple[None, dict[str, list[str]]]]:
     return [(None, {"fields": fields})]
+
+
+@deconstructible
+class RandomFileName(object):
+    def __init__(self, path: str):
+        self.path = Path(path)
+
+    def __call__(self, instance: Any, filename: str):
+        path = Path(filename)
+        random_path = path.with_name(str(uuid.uuid4()))
+        random_path = random_path.with_suffix(path.suffix)
+        return self.path / random_path
 
 
 __all__ = []
