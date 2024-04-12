@@ -43,6 +43,7 @@ class Category(UniqueNormalizedNameMixin, models.Model):
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__category__verbose_name")
         verbose_name_plural = _(
             "recipes__model__category__verbose_name_plural",
@@ -59,6 +60,7 @@ class Kitchen(UniqueNormalizedNameMixin, models.Model):
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__kitchen__verbose_name")
         verbose_name_plural = _("recipes__model__kitchen__verbose_name_plural")
 
@@ -73,6 +75,7 @@ class Ingredient(UniqueNormalizedNameMixin, models.Model):
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__ingredient__verbose_name")
         verbose_name_plural = _(
             "recipes__model__ingredient__verbose_name_plural",
