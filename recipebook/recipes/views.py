@@ -29,13 +29,21 @@ class SearchView(ListView):
 
         search_ingredients = self.request.GET.get("si", "")
         if search_ingredients:
-            ingredients = [int(v) for v in search_ingredients.split("-") if v.isdigit()]
+            ingredients = [
+                int(v) for v in search_ingredients.split("-") if v.isdigit()
+            ]
             queryset = queryset.filter(ingredients__ingredient__in=ingredients)
 
         search_ingredients_exclude = self.request.GET.get("sie", "")
         if search_ingredients_exclude:
-            ingredients = [int(v) for v in search_ingredients_exclude.split("-") if v.isdigit()]
-            queryset = queryset.exclude(ingredients__ingredient__in=ingredients)
+            ingredients = [
+                int(v)
+                for v in search_ingredients_exclude.split("-")
+                if v.isdigit()
+            ]
+            queryset = queryset.exclude(
+                ingredients__ingredient__in=ingredients,
+            )
 
         search_level = self.request.GET.get("sl", "")
         if search_level.isdigit():
