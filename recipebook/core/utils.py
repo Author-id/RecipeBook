@@ -1,10 +1,37 @@
 from pathlib import Path
+import re
 from typing import Any
+from unicodedata import normalize
 import uuid
 
 from django.utils.deconstruct import deconstructible
 from markdown import Markdown
 from pymdownx import emoji
+
+SIMILAR_CHARS = {
+    "a": "а",
+    "b": "в",
+    "c": "с",
+    "e": "е",
+    "ё": "е",
+    "h": "н",
+    "k": "к",
+    "m": "м",
+    "o": "о",
+    "p": "р",
+    "r": "г",
+    "t": "т",
+    "x": "х",
+    "y": "у",
+}
+
+NOT_LETTER_RE = re.compile(r"[^а-яёa-z\d]")
+
+
+def normalize_name(value: str) -> str:
+    normalized = normalize("NFKC", value.lower())
+    only_letters = NOT_LETTER_RE.sub("", normalized)
+    return "".join(SIMILAR_CHARS.get(ch, ch) for ch in only_letters)
 
 
 class Thumbnail:
