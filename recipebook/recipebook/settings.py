@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 
@@ -132,8 +132,8 @@ LOGOUT_REDIRECT_URL = "/"
 LANGUAGE_CODE = "ru"
 
 LANGUAGES = [
-    ("ru", gettext_lazy("Russian")),
-    ("en", gettext_lazy("English")),
+    ("ru", _("Russian")),
+    ("en", _("English")),
 ]
 
 TIME_ZONE = "UTC"
