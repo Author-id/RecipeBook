@@ -1,6 +1,13 @@
 const inp_name = document.getElementById("search-name");
 const inp_category = document.getElementById("search-category");
+const inp_kitchen = document.getElementById("search-kitchen");
 const inp_level = document.getElementById("search-level");
+
+const btn_sort_name = document.getElementById("sort-name");
+const btn_sort_new = document.getElementById("sort-new");
+const btn_sort_easy = document.getElementById("sort-easy");
+const btn_sort_fast = document.getElementById("sort-fast");
+
 const btn = document.getElementById("search-btn");
 const clear_btn = document.getElementById("search-clear-btn");
 
@@ -9,6 +16,8 @@ const ingredient_include = document.getElementById("search-ingredient-include");
 const ingredient_exclude = document.getElementById("search-ingredient-exclude");
 const ingredient_input = document.getElementById("search-ingredient-input");
 const ingredient_list = document.getElementById("search-ingredient-list");
+
+const pagination = document.getElementById("pagination");
 
 ingredient_input.addEventListener("focus", () => ingredient_list.classList.add("search_visible"))
 window.addEventListener("click", e =>
@@ -53,9 +62,10 @@ ingredient_input.addEventListener("input", () =>
 })
 
 const url = new URL(window.location);
-inp_name.value = url.searchParams.get("sn");
-inp_category.value = url.searchParams.get("sc");
-inp_level.value = url.searchParams.get("sl");
+inp_name.value = url.searchParams.get("sn") || "";
+inp_category.value = url.searchParams.get("sc") || "";
+inp_kitchen.value = url.searchParams.get("sk") || "";
+inp_level.value = url.searchParams.get("sl") || "";
 
 let ingredients_include = url.searchParams.get("si")?.split("-").filter(v => v && !isNaN(+v)) || [];
 let ingredients_exclude = url.searchParams.get("sie")?.split("-").filter(v => v && !isNaN(+v)) || [];
@@ -133,25 +143,55 @@ function displayAllIngredients()
 }
 displayAllIngredients()
 
+pagination.querySelectorAll("button")
+	.forEach(el => el.addEventListener("click", () =>
+	{
+		const url = new URL(window.location);
+		url.searchParams.set("page", el.getAttribute("data-page"));
+		window.location = url;
+	})
+);
+
 clear_btn.addEventListener("click", () =>
 {
 	inp_name.value = "";
 	inp_category.value = "";
+	inp_kitchen.value = "";
 	inp_level.value = "";
 	ingredients_include = [];
 	ingredients_exclude = [];
+	displayAllIngredients();
 })
 
 
-btn.addEventListener("click", () =>
+btn.addEventListener("click", search);
+inp_name.addEventListener("keypress", e =>
+{
+	if (e.key == "Enter") search();
+})
+
+function search()
 {
 	const url = new URL(window.location);
+	url.searchParams.set("page", 1);
 	url.searchParams.set("sn", inp_name.value);
 	url.searchParams.set("sc", inp_category.value);
+	url.searchParams.set("sk", inp_kitchen.value);
 	url.searchParams.set("sl", inp_level.value);
 	url.searchParams.set("si", ingredients_include.map(v => v.id).join("-"));
 	url.searchParams.set("sie", ingredients_exclude.map(v => v.id).join("-"));
 	window.location = url;
-})
+}
 
+function sort(type)
+{
+	const url = new URL(window.location);
+	url.searchParams.set("page", 1);
+	url.searchParams.set("order", type);
+	window.location = url;
+}
 
+btn_sort_name.addEventListener("click", () => sort("name"));
+btn_sort_new.addEventListener("click", () => sort("new"));
+btn_sort_easy.addEventListener("click", () => sort("easy"));
+btn_sort_fast.addEventListener("click", () => sort("fast"));

@@ -4,7 +4,7 @@ from django.db.models.query import QuerySet
 from django.views.generic import DetailView, ListView, TemplateView
 
 from core.utils import normalize_name
-from recipes.models import Category, Ingredient, Recipe, RecipeLevel
+from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 
 
 class MainView(TemplateView):
@@ -13,6 +13,7 @@ class MainView(TemplateView):
 
 class SearchView(ListView):
     template_name = "recipes/search.html"
+    paginate_by = 16
     context_object_name = "recipes"
 
     def get_queryset(self) -> QuerySet:
@@ -45,11 +46,25 @@ class SearchView(ListView):
                 ingredients__ingredient__in=ingredients,
             )
 
+        search_kitchen = self.request.GET.get("sk", "")
+        if search_kitchen.isdigit():
+            queryset = queryset.filter(kitchen=search_kitchen)
+
         search_level = self.request.GET.get("sl", "")
         if search_level.isdigit():
-            return queryset.filter(level=search_level)
+            queryset = queryset.filter(level=search_level)
 
-        return queryset
+        ordering = self.request.GET.get("order", "name")
+        if ordering == "new":
+            return queryset.order_by("-created", "name")
+
+        if ordering == "easy":
+            return queryset.order_by("level", "name")
+
+        if ordering == "fast":
+            return queryset.order_by("time", "name")
+
+        return queryset.order_by("name")
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -58,6 +73,7 @@ class SearchView(ListView):
             {
                 "categories": Category.objects.all(),
                 "ingredients": Ingredient.objects.all(),
+                "kitchens": Kitchen.objects.all(),
                 "levels": RecipeLevel.choices,
             },
         )

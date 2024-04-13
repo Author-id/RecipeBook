@@ -8,6 +8,7 @@
 
 {% block head %}
 	<link rel="stylesheet" href="{% static 'css/search.css' %}">
+	<script src="{% static 'js/search.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -66,6 +67,15 @@
 						</select>
 					</div>
 					<div>
+						<span>Кухня:</span>
+						<select id="search-kitchen">
+							<option value="">Любая</option>
+							{% for kitchen in kitchens %}
+							<option value="{{kitchen.id}}">{{kitchen.name}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div>
 						<span>Сложность:</span>
 						<select id="search-level">
 							<option value="">Любая</option>
@@ -79,7 +89,13 @@
 					<button class="btn btn-primary" id="search-btn">Искать!</button>
 					<button class="btn btn-secondary " id="search-clear-btn">Очистить поиск</button>
 				</div>
-				<script src="{% static 'js/search.js' %}"></script>
+			</div>
+			<div>
+				<span>Сортировка:</span>
+				<button class="btn btn-sm btn-link" id="sort-name">По названию</button>
+				<button class="btn btn-sm btn-link" id="sort-new">Новые</button>
+				<button class="btn btn-sm btn-link" id="sort-easy">Лёгкие</button>
+				<button class="btn btn-sm btn-link" id="sort-fast">Быстрые</button>
 			</div>
 			<div class="d-grid gap-4" style="grid-template-columns: 1fr 1fr;">
 				{% for recipe in recipes %}
@@ -116,6 +132,23 @@
 				{% empty %}
 				<h3>Ничего не найдено</h3>
 				{% endfor %}
+			</div>
+			<div class="d-flex align-items-center justify-content-center my-3">
+				<span class="step-links" id="pagination">
+					{% if page_obj.has_previous %}
+						<button class="btn btn-success btn-sm" data-page="1">&laquo; first</button>
+						<button class="btn btn-primary btn-sm" data-page="{{ page_obj.previous_page_number }}">previous</button>
+					{% endif %}
+
+					<span class="mx-1">
+						Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+					</span>
+
+					{% if page_obj.has_next %}
+						<button class="btn btn-primary btn-sm" data-page="{{ page_obj.next_page_number }}">next</button>
+						<button class="btn btn-success btn-sm" data-page="{{ page_obj.paginator.num_pages }}">last &raquo;</button>
+					{% endif %}
+				</span>
 			</div>
 		</div>
 	</div>
