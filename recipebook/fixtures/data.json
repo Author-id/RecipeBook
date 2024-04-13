@@ -1,0 +1,1416 @@
+[
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$qGeGa5QhVk31UiIjjAcvXC$9erho++nl+U18TLzcTh+Q0m7WSOmX/CeqkxesmZF7uM=",
+        "last_login": "2024-04-12T13:32:11.924Z",
+        "is_superuser": true,
+        "username": "andrey",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-04-12T13:31:40.548Z",
+        "email": "semyanovandrew@yandex.ru",
+        "image": "",
+        "trusted": false,
+        "attempts_count": 0,
+        "deactivation_date": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$HwyBjKqkhsPX8qk1o2V9r0$2b/le975Bbc1gYlVapUSFpfZhr6Xv+Xu1+4+GDk1GEE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "asus",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-12T15:01:57Z",
+        "email": "1@yandex.ru",
+        "image": "",
+        "trusted": false,
+        "attempts_count": 0,
+        "deactivation_date": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$7m7EWhEuRZxN9iF2wMBTMQ$xEsrb4dfKrqOWI89vafEdsvf3IpzJXBcH5+WYthPWZI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "egor",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-04-12T15:04:54.548Z",
+        "email": "",
+        "image": "",
+        "trusted": false,
+        "attempts_count": 0,
+        "deactivation_date": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 1,
+    "fields": {
+        "name": "кондитерские изделия"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 2,
+    "fields": {
+        "name": "консервированные продукты"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 3,
+    "fields": {
+        "name": "горячие напитки"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 4,
+    "fields": {
+        "name": "молочные продукты"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 5,
+    "fields": {
+        "name": "мучные изделия"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 6,
+    "fields": {
+        "name": "мясная продукция"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 7,
+    "fields": {
+        "name": "морепродукты"
+    }
+},
+{
+    "model": "recipes.category",
+    "pk": 8,
+    "fields": {
+        "name": "коктейли"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 9,
+    "fields": {
+        "name": "русская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 10,
+    "fields": {
+        "name": "корейская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 11,
+    "fields": {
+        "name": "китайская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 12,
+    "fields": {
+        "name": "японская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 13,
+    "fields": {
+        "name": "французская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 14,
+    "fields": {
+        "name": "грузинская кухня"
+    }
+},
+{
+    "model": "recipes.kitchen",
+    "pk": 15,
+    "fields": {
+        "name": "итальянская кухня"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 1,
+    "fields": {
+        "name": "абрикос"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 2,
+    "fields": {
+        "name": "авокадо"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 3,
+    "fields": {
+        "name": "апельсины"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 4,
+    "fields": {
+        "name": "баклажан"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 5,
+    "fields": {
+        "name": "банан"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 6,
+    "fields": {
+        "name": "белки"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 7,
+    "fields": {
+        "name": "вафли"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 8,
+    "fields": {
+        "name": "ваниль"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 9,
+    "fields": {
+        "name": "вареное куриное филе"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 10,
+    "fields": {
+        "name": "васаби"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 11,
+    "fields": {
+        "name": "ветчина"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 12,
+    "fields": {
+        "name": "вермишель"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 13,
+    "fields": {
+        "name": "вода"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 14,
+    "fields": {
+        "name": "водоросли"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 15,
+    "fields": {
+        "name": "вишня"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 16,
+    "fields": {
+        "name": "виноград"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 17,
+    "fields": {
+        "name": "голубика"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 18,
+    "fields": {
+        "name": "горох"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 19,
+    "fields": {
+        "name": "горчица"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 20,
+    "fields": {
+        "name": "грибы"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 21,
+    "fields": {
+        "name": "грудка"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 22,
+    "fields": {
+        "name": "груша"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 23,
+    "fields": {
+        "name": "джем"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 24,
+    "fields": {
+        "name": "дрожжи"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 25,
+    "fields": {
+        "name": "желток"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 26,
+    "fields": {
+        "name": "зелень"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 27,
+    "fields": {
+        "name": "имбирь"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 28,
+    "fields": {
+        "name": "кабачок"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 29,
+    "fields": {
+        "name": "какао"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 30,
+    "fields": {
+        "name": "капуста"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 31,
+    "fields": {
+        "name": "кетчуп"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 32,
+    "fields": {
+        "name": "киви"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 33,
+    "fields": {
+        "name": "клубника"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 34,
+    "fields": {
+        "name": "кокос"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 35,
+    "fields": {
+        "name": "колбаса"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 36,
+    "fields": {
+        "name": "креветки"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 37,
+    "fields": {
+        "name": "крекер"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 38,
+    "fields": {
+        "name": "лосось"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 39,
+    "fields": {
+        "name": "лимон"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 40,
+    "fields": {
+        "name": "майонез"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 41,
+    "fields": {
+        "name": "малина"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 42,
+    "fields": {
+        "name": "мандарины"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 43,
+    "fields": {
+        "name": "манго"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 44,
+    "fields": {
+        "name": "маракуйя"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 45,
+    "fields": {
+        "name": "масло"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 46,
+    "fields": {
+        "name": "мед"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 47,
+    "fields": {
+        "name": "молоко"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 48,
+    "fields": {
+        "name": "морковь"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 49,
+    "fields": {
+        "name": "мука"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 50,
+    "fields": {
+        "name": "мясо"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 51,
+    "fields": {
+        "name": "мята"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 52,
+    "fields": {
+        "name": "огурец"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 53,
+    "fields": {
+        "name": "орахисовая паста"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 54,
+    "fields": {
+        "name": "орехи"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 55,
+    "fields": {
+        "name": "паштет"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 56,
+    "fields": {
+        "name": "перец"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 57,
+    "fields": {
+        "name": "повидло"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 58,
+    "fields": {
+        "name": "помидор"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 59,
+    "fields": {
+        "name": "рис"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 60,
+    "fields": {
+        "name": "сало"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 61,
+    "fields": {
+        "name": "салями"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 62,
+    "fields": {
+        "name": "сгущеное молоко"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 63,
+    "fields": {
+        "name": "сыр"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 64,
+    "fields": {
+        "name": "сметана"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 65,
+    "fields": {
+        "name": "сода"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 66,
+    "fields": {
+        "name": "соль"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 67,
+    "fields": {
+        "name": "сухофрукты"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 68,
+    "fields": {
+        "name": "сахар"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 69,
+    "fields": {
+        "name": "табаско"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 70,
+    "fields": {
+        "name": "творог"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 71,
+    "fields": {
+        "name": "тесто"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 72,
+    "fields": {
+        "name": "тыква"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 73,
+    "fields": {
+        "name": "табаско"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 74,
+    "fields": {
+        "name": "фарш"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 75,
+    "fields": {
+        "name": "хлеб"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 76,
+    "fields": {
+        "name": "целехон"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 77,
+    "fields": {
+        "name": "шоколад"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 78,
+    "fields": {
+        "name": "яблоко"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 79,
+    "fields": {
+        "name": "яйца"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 80,
+    "fields": {
+        "name": "лимонный сок"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 81,
+    "fields": {
+        "name": "листья салата"
+    }
+},
+{
+    "model": "recipes.ingredient",
+    "pk": 82,
+    "fields": {
+        "name": "лук"
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+        "title": "Безе",
+        "author": 1,
+        "created": "2024-04-12T14:18:03.481Z",
+        "updated": "2024-04-12T14:18:03.481Z",
+        "state": "MOD",
+        "kitchen": 9,
+        "instruction": "1. Яйца для безе должны быть не самыми свежими, а примерно недельной давности. Белки таких яиц лучше взбиваются.\r\n2. Отделяйте белки от желтков максимально аккуратно. Если даже немного желтка попадёт в белковую массу, она просто не взобьётся.\r\n3. Отделять белки от желтков нужно сразу после того, как вы достанете яйца из холодильника. Но перед взбиванием белки должны постоять при комнатной температуре полчаса. Благодаря этому основа для безе будет более воздушной.\r\n4. Взбивайте белки в чистой сухой ёмкости. Насадки миксера должны быть такими же. Даже из-за капли воды или жира у вас не получится взбить белки в пену. Для надёжности можно предварительно протереть посуду лимонным соком, а затем — бумажным полотенцем.\r\n5. Используйте не сахар, а сахарную пудру. Если её нет, обычный сахар можно измельчить в кофемолке. Белковая масса взбивается лучше именно с пудрой. Кроме того, крупинки сахара могут остаться в безе, а значит, десерт будет не таким нежным.\r\n6. Сахарную пудру нужно добавлять уже после того, как вы взобьёте белки в пену, а не до этого. Её нужно подсыпать порционно, примерно по чайной ложке, продолжая взбивать яичную массу.\r\n7. Лимонный сок добавляют в конце, чтобы масса не теряла объём. Исходите из расчёта ½ чайной ложки сока на 1 яичный белок. Но если у вас довольно мощный миксер, который и так взбил белки в устойчивую пену, сок можно не добавлять. В любом случае он никак не повредит готовому десерту.",
+        "main_image": "recipes/main_image/78c9255a-c039-42d4-975d-a751de4fc9d0.webp",
+        "level": 2,
+        "time": 45,
+        "categories": [
+            1
+        ]
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+        "title": "Сырники",
+        "author": 2,
+        "created": "2024-04-12T15:15:18.716Z",
+        "updated": "2024-04-12T15:15:18.716Z",
+        "state": "MOD",
+        "kitchen": 9,
+        "instruction": "Приготовление:\r\n\r\nТворог протрите через частое сито в большую миску. Если творог слишком влажный, откиньте его на марлю, сложенную вчетверо, и отожмите.\r\n\r\nВ миску с творогом добавьте обычный и ванильный сахар, а также соль. Перемешайте.\r\n\r\nЯйцо взбейте венчиком. Добавьте в творожную массу и перемешайте лопаточкой или вилкой.\r\n\r\nВсыпьте муку. Перемешивайте лопаточкой до получения теста однородной гладкой консистенции. Тесто не должно быть слишком крутым, но при этом должно держать форму. Поэтому при необходимости добавьте еще муки. Затем готовое тесто для сырников уберите на 15 минут в холодильник или просто в прохладное место.\r\n\r\nСтол присыпьте небольшим количеством муки. Выложите приготовленное тесто для классических сырников и руками сформуйте из него толстую колбаску диаметром примерно 5 см.\r\n\r\nПолучившуюся «колбаску» нарежьте кружочками толщиной не более 1,5 см. Каждый сырник обваляйте в муке и оставьте на столе, присыпанном мукой, до обжаривания.\r\n\r\nВ сковороде с толстым дном нагрейте оба вида масла. Жарьте сырники по 2 минуты с каждой стороны. Затем накройте крышкой и готовьте еще 3 минуты на очень маленьком огне.\r\n\r\nСырники классические можно довести до полной готовности и в духовке. Для этого после обжаривания переложите их на противень и запекайте 5 минут при 200 °C.",
+        "main_image": "recipes/main_image/17e0a931-f5aa-43b2-97e2-c4e52402e35b.webp",
+        "level": 1,
+        "time": 15,
+        "categories": [
+            1
+        ]
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+        "title": "Домашняя пицца",
+        "author": 3,
+        "created": "2024-04-12T15:38:26.629Z",
+        "updated": "2024-04-12T15:38:26.629Z",
+        "state": "MOD",
+        "kitchen": 15,
+        "instruction": "1. Подготовка дрожжевого теста:\r\n   - В небольшой миске смешайте теплую воду с дрожжами и сахаром. Оставьте на 10 минут до образования пены.\r\n   - В большой миске смешайте муку с солью. Добавьте дрожжевую смесь и оливковое масло.\r\n   - Замесите тесто до эластичности и гладкости. Если нужно, добавьте немного муки.\r\n   - Накройте тесто полотенцем и оставьте в теплом месте на 1-1,5 часа, чтобы оно поднялось.\r\n\r\n2. Подготовка пиццы:\r\n   - Разогрейте духовку до 220°C.\r\n   - Выложите тесто на присыпанную мукой поверхность и раскатайте в круг или прямоугольник.\r\n   - Переложите тесто на противень, застеленный пергаментом или смазанный маслом.\r\n   - Равномерно распределите томатный соус по поверхности теста. Посыпьте итальянскими травами.\r\n   - Распределите моцареллу и пеперони по поверхности соуса.\r\n\r\n3. Выпекание:\r\n   - Поставьте пиццу в предварительно разогретую духовку и выпекайте около 15-20 минут или до золотистой корочки и расплавления сыра.\r\n   - Перед подачей дайте пицце немного остыть, затем нарежьте на порции.",
+        "main_image": "recipes/main_image/38f40675-9d63-489c-81c0-5446a4ed3949.jpg",
+        "level": 2,
+        "time": 30,
+        "categories": [
+            5
+        ]
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 4,
+    "fields": {
+        "title": "Торт \"Воздушное чудо\"",
+        "author": 2,
+        "created": "2024-04-12T16:03:08.874Z",
+        "updated": "2024-04-12T16:03:08.874Z",
+        "state": "MOD",
+        "kitchen": 9,
+        "instruction": "Приготовление: Яйца взбей с 4 ст. л. сахара, всыпь муку, ваниль, разрыхлитель и перемешай.\r\nИспеки бисквит и разрежь его вдоль на три - четыре тонких коржа. Сметану взбей миксером с оставшимся сахаром. Переложи коржи полученным кремом и тонкими кружками банана.",
+        "main_image": "recipes/main_image/aa72e52f-cad6-4094-9886-a94a24af30a0.jpg",
+        "level": 2,
+        "time": 60,
+        "categories": [
+            1
+        ]
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 5,
+    "fields": {
+        "title": "домашний бургер",
+        "author": 1,
+        "created": "2024-04-12T16:18:57.339Z",
+        "updated": "2024-04-12T16:20:24.217Z",
+        "state": "MOD",
+        "kitchen": 15,
+        "instruction": "1. Подготовка ингредиентов:\r\n   - Помойте и нарежьте помидоры и лук кольцами.\r\n   - Помойте и обсушите листья салата.\r\n   - Разрежьте булочки пополам и, если желаете, поджарьте их внутренние стороны на сковороде для добавления хрусткости.\r\n\r\n2. Формирование котлет:\r\n   - Сформируйте из говяжьего фарша котлеты, слегка присыпая их солью и перцем по вкусу. Толщина котлеты — примерно 1-1,5 см.\r\n\r\n3. Жарка котлет:\r\n   - Разогрейте сковороду с маслом.\r\n   - Обжарьте котлеты с каждой стороны примерно по 3-4 минуты до образования румяной корочки.\r\n   - Если используете сыр, положите его на котлету за минуту до окончания жарки, чтобы он успел расплавиться.\r\n\r\n4. Сборка бургера:\r\n   - На нижнюю половину булочки намажьте соус.\r\n   - Сверху положите лист салата, затем помидор, лук.\r\n   - На овощи выложите готовую котлету с сыром.\r\n   - Накройте верхней половиной булочки.",
+        "main_image": "recipes/main_image/5eedb627-ecc0-4ed9-b008-c73a28bbcc65.webp",
+        "level": 3,
+        "time": 30,
+        "categories": [
+            6
+        ]
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 6,
+    "fields": {
+        "title": "Бисквит",
+        "author": 2,
+        "created": "2024-04-12T17:11:35.601Z",
+        "updated": "2024-04-12T17:11:35.601Z",
+        "state": "MOD",
+        "kitchen": 9,
+        "instruction": "Взбить яйца, добавить сахар, взбить. Добавить просеянную муку, аккуратно перемешать ложкой. Печь 20 минут при температуре 180.",
+        "main_image": "recipes/main_image/8655cbe7-10d6-4f71-bd68-1d80f304e2a6.webp",
+        "level": 1,
+        "time": 20,
+        "categories": [
+            1
+        ]
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 1,
+    "fields": {
+        "recipe": 1,
+        "ingredient": 6,
+        "count": 3.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 2,
+    "fields": {
+        "recipe": 1,
+        "ingredient": 68,
+        "count": 500.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 3,
+    "fields": {
+        "recipe": 1,
+        "ingredient": 39,
+        "count": 2.0,
+        "unit": "TEASPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 4,
+    "fields": {
+        "recipe": 2,
+        "ingredient": 49,
+        "count": 4.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 5,
+    "fields": {
+        "recipe": 2,
+        "ingredient": 68,
+        "count": 6.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 6,
+    "fields": {
+        "recipe": 2,
+        "ingredient": 70,
+        "count": 3.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 7,
+    "fields": {
+        "recipe": 2,
+        "ingredient": 79,
+        "count": 2.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 8,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 49,
+        "count": 250.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 9,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 13,
+        "count": 160.0,
+        "unit": "ML"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 10,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 24,
+        "count": 1.0,
+        "unit": "TEASPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 11,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 66,
+        "count": 0.5,
+        "unit": "TEASPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 12,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 45,
+        "count": 2.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 13,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 35,
+        "count": 200.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 14,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 63,
+        "count": 250.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 15,
+    "fields": {
+        "recipe": 3,
+        "ingredient": 31,
+        "count": 150.0,
+        "unit": "ML"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 16,
+    "fields": {
+        "recipe": 4,
+        "ingredient": 79,
+        "count": 4.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 17,
+    "fields": {
+        "recipe": 4,
+        "ingredient": 68,
+        "count": 10.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 18,
+    "fields": {
+        "recipe": 4,
+        "ingredient": 29,
+        "count": 100.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 19,
+    "fields": {
+        "recipe": 4,
+        "ingredient": 5,
+        "count": 2.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 20,
+    "fields": {
+        "recipe": 4,
+        "ingredient": 8,
+        "count": 1.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 21,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 75,
+        "count": 2.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 22,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 74,
+        "count": 1.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 23,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 66,
+        "count": 50.0,
+        "unit": "G"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 24,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 31,
+        "count": 100.0,
+        "unit": "ML"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 25,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 58,
+        "count": 2.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 26,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 63,
+        "count": 2.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 27,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 82,
+        "count": 4.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 28,
+    "fields": {
+        "recipe": 5,
+        "ingredient": 45,
+        "count": 50.0,
+        "unit": "ML"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 29,
+    "fields": {
+        "recipe": 6,
+        "ingredient": 49,
+        "count": 2.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 30,
+    "fields": {
+        "recipe": 6,
+        "ingredient": 68,
+        "count": 1.0,
+        "unit": "TABLESPOON"
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 31,
+    "fields": {
+        "recipe": 6,
+        "ingredient": 79,
+        "count": 5.0,
+        "unit": "PIECE"
+    }
+},
+{
+    "model": "recipes.additionalimage",
+    "pk": 1,
+    "fields": {
+        "recipe": 1,
+        "image": "recipes/additional/e965543a-a5a1-4b43-8466-a13c1bd77af6.webp"
+    }
+},
+{
+    "model": "recipes.additionalimage",
+    "pk": 2,
+    "fields": {
+        "recipe": 1,
+        "image": "recipes/additional/c766858b-9f87-49e8-b132-849a7a3a760a.webp"
+    }
+},
+{
+    "model": "recipes.additionalimage",
+    "pk": 3,
+    "fields": {
+        "recipe": 2,
+        "image": "recipes/additional/3b47f784-62f1-4a07-bed4-39efaf0cf32b.webp"
+    }
+},
+{
+    "model": "recipes.additionalimage",
+    "pk": 4,
+    "fields": {
+        "recipe": 3,
+        "image": "recipes/additional/e81a1458-1ba6-4627-b2d5-2cdf20745a77.jpg"
+    }
+},
+{
+    "model": "recipes.additionalimage",
+    "pk": 5,
+    "fields": {
+        "recipe": 3,
+        "image": "recipes/additional/ca471a58-4499-4c24-aceb-8bc32f6ac78b.jpg"
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 1,
+    "fields": {
+        "author": 1,
+        "recipe": 2,
+        "created": "2024-04-12T17:13:03.857Z",
+        "updated": "2024-04-12T17:13:03.857Z",
+        "text": "Очень вкусные сырники, а главное недолго готовятся! Быстро разобрался с ингридиентами с съел, всем рекоммендую."
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 2,
+    "fields": {
+        "author": 3,
+        "recipe": 5,
+        "created": "2024-04-12T17:14:23.644Z",
+        "updated": "2024-04-12T17:14:23.644Z",
+        "text": "Прикольный бургер! Не думал что он так легко готовится, всем советую попробовать."
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 3,
+    "fields": {
+        "author": 2,
+        "recipe": 6,
+        "created": "2024-04-12T17:15:54.419Z",
+        "updated": "2024-04-12T17:15:54.419Z",
+        "text": "очень быстро и просто! каждый сможет приготовить без затруднений! советую попробовать"
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 4,
+    "fields": {
+        "author": 3,
+        "recipe": 3,
+        "created": "2024-04-12T17:17:28.732Z",
+        "updated": "2024-04-12T17:17:28.732Z",
+        "text": "Пицца - мое любимое блюдо! Я очень рад что наконец-то могу ее готовить самостотельно, благодаря понятной инструкции."
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 5,
+    "fields": {
+        "author": 1,
+        "recipe": 4,
+        "created": "2024-04-12T17:19:00.180Z",
+        "updated": "2024-04-12T17:19:00.180Z",
+        "text": "Приготовил торт, если честно думал что у меня не получится. Но рецепт оказался совсем не сложным и сразу запоминающимся, так что буду теперь готовить торт чаще и чаще!"
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 6,
+    "fields": {
+        "author": 2,
+        "recipe": 2,
+        "created": "2024-04-12T17:20:01.764Z",
+        "updated": "2024-04-12T17:20:01.764Z",
+        "text": "отличные сырники, готовлю каждое утро и наслаждаюсь!"
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 7,
+    "fields": {
+        "author": 3,
+        "recipe": 1,
+        "created": "2024-04-12T17:21:14.611Z",
+        "updated": "2024-04-12T17:21:14.611Z",
+        "text": "очень вкусное безе! до этого никогда не готовил и вдруг наткнулся на довольно понятный рецепт, всем советую"
+    }
+},
+{
+    "model": "feedback.comment",
+    "pk": 8,
+    "fields": {
+        "author": 1,
+        "recipe": 5,
+        "created": "2024-04-12T17:22:15.368Z",
+        "updated": "2024-04-12T17:22:15.368Z",
+        "text": "бургер получился что надо! быстро и вкусно, рекомендую"
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 1,
+    "fields": {
+        "author": 1,
+        "recipe": 1,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 2,
+    "fields": {
+        "author": 1,
+        "recipe": 2,
+        "value": 4
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 3,
+    "fields": {
+        "author": 1,
+        "recipe": 6,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 4,
+    "fields": {
+        "author": 1,
+        "recipe": 4,
+        "value": 3
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 5,
+    "fields": {
+        "author": 2,
+        "recipe": 1,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 6,
+    "fields": {
+        "author": 2,
+        "recipe": 2,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 7,
+    "fields": {
+        "author": 2,
+        "recipe": 3,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 8,
+    "fields": {
+        "author": 2,
+        "recipe": 5,
+        "value": 4
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 9,
+    "fields": {
+        "author": 3,
+        "recipe": 1,
+        "value": 3
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 10,
+    "fields": {
+        "author": 3,
+        "recipe": 2,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 11,
+    "fields": {
+        "author": 3,
+        "recipe": 4,
+        "value": 5
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 12,
+    "fields": {
+        "author": 3,
+        "recipe": 5,
+        "value": 3
+    }
+},
+{
+    "model": "feedback.rate",
+    "pk": 13,
+    "fields": {
+        "author": 3,
+        "recipe": 6,
+        "value": 4
+    }
+}
+]
