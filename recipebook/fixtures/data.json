@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$600000$dRO4inEavMKctHngVHz9UF$KRikri4xJuGS5Od/Sz+qrgIPIBgxiWez+GQNVjzXfYA=",
-        "last_login": "2024-04-13T09:38:01.271Z",
+        "last_login": "2024-04-13T09:48:29.771Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -1344,43 +1344,43 @@
     }
 },
 {
-    "model": "recipes.additionalimage",
+    "model": "recipes.recipeimage",
     "pk": 1,
     "fields": {
         "recipe": 1,
-        "image": "recipes/additional/e965543a-a5a1-4b43-8466-a13c1bd77af6.webp"
+        "image": "recipes/recipel/e965543a-a5a1-4b43-8466-a13c1bd77af6.webp"
     }
 },
 {
-    "model": "recipes.additionalimage",
+    "model": "recipes.recipeimage",
     "pk": 2,
     "fields": {
         "recipe": 1,
-        "image": "recipes/additional/c766858b-9f87-49e8-b132-849a7a3a760a.webp"
+        "image": "recipes/recipe/c766858b-9f87-49e8-b132-849a7a3a760a.webp"
     }
 },
 {
-    "model": "recipes.additionalimage",
+    "model": "recipes.recipeimage",
     "pk": 3,
     "fields": {
         "recipe": 2,
-        "image": "recipes/additional/3b47f784-62f1-4a07-bed4-39efaf0cf32b.webp"
+        "image": "recipes/recipe/3b47f784-62f1-4a07-bed4-39efaf0cf32b.webp"
     }
 },
 {
-    "model": "recipes.additionalimage",
+    "model": "recipes.recipeimage",
     "pk": 4,
     "fields": {
         "recipe": 3,
-        "image": "recipes/additional/e81a1458-1ba6-4627-b2d5-2cdf20745a77.jpg"
+        "image": "recipes/recipe/e81a1458-1ba6-4627-b2d5-2cdf20745a77.jpg"
     }
 },
 {
-    "model": "recipes.additionalimage",
+    "model": "recipes.recipeimage",
     "pk": 5,
     "fields": {
         "recipe": 3,
-        "image": "recipes/additional/ca471a58-4499-4c24-aceb-8bc32f6ac78b.jpg"
+        "image": "recipes/recipe/ca471a58-4499-4c24-aceb-8bc32f6ac78b.jpg"
     }
 },
 {

@@ -287,19 +287,19 @@ msgid "recipes__model__recipe_ingredient__str"
 msgstr "[%(id)s] ingredient %(ingredient)s for %(recipe)s"
 
 #: .\recipebook\recipes\models.py:235
-msgid "recipes__model__additional_image__image"
+msgid "recipes__model__recipe_image__image"
 msgstr "image"
 
 #: .\recipebook\recipes\models.py:240
-msgid "recipes__model__additional_image__verbose_name"
-msgstr "additional image"
+msgid "recipes__model__recipe_image__verbose_name"
+msgstr "recipe image"
 
 #: .\recipebook\recipes\models.py:242
-msgid "recipes__model__additional_image__verbose_name_plural"
-msgstr "additional images"
+msgid "recipes__model__recipe_image__verbose_name_plural"
+msgstr "recipe images"
 
 #: .\recipebook\recipes\models.py:246
-msgid "recipes__model__additional_image__str"
+msgid "recipes__model__recipe_image__str"
 msgstr "image %(id)s for %(recipe)s"
 
 #. Translators: Заголовок страницы

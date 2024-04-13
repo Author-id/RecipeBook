@@ -5,13 +5,13 @@ from recipes import models
 
 
 class AdditionalImageAdmin(admin.TabularInline):
-    model = models.AdditionalImage
+    model = models.RecipeImage
     fields = [
-        models.AdditionalImage.image_tmb.__name__,
-        models.AdditionalImage.image.field.name,
+        models.RecipeImage.image_tmb.__name__,
+        models.RecipeImage.image.field.name,
     ]
     readonly_fields = [
-        models.AdditionalImage.image_tmb.__name__,
+        models.RecipeImage.image_tmb.__name__,
     ]
     extra = 1
 

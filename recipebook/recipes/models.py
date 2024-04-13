@@ -226,7 +226,7 @@ class RecipeIngredient(models.Model):
         }
 
 
-class AdditionalImage(models.Model):
+class RecipeImage(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
@@ -234,19 +234,18 @@ class AdditionalImage(models.Model):
         verbose_name=_("model__foreign__recipe"),
     )
     image = models.ImageField(
-        upload_to=RandomFileName("recipes/additional/"),
-        verbose_name=_("recipes__model__additional_image__image"),
+        upload_to=RandomFileName("recipes/recipe/"),
+        verbose_name=_("recipes__model__recipe_image__image"),
     )
 
     class Meta:
-        db_table = "additional_image"
-        verbose_name = _("recipes__model__additional_image__verbose_name")
+        verbose_name = _("recipes__model__recipe_image__verbose_name")
         verbose_name_plural = _(
-            "recipes__model__additional_image__verbose_name_plural",
+            "recipes__model__recipe_image__verbose_name_plural",
         )
 
     def __str__(self):
-        return _("recipes__model__additional_image__str") % {
+        return _("recipes__model__recipe_image__str") % {
             "id": self.id,
             "recipe": self.recipe_id,
         }
