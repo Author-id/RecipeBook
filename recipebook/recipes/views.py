@@ -3,7 +3,6 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.views.generic import DetailView, ListView, TemplateView
 
-from core.utils import normalize_name
 from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 
 
@@ -17,54 +16,8 @@ class SearchView(ListView):
     context_object_name = "recipes"
 
     def get_queryset(self) -> QuerySet:
-        queryset = Recipe.objects.all()
-
-        search_name = self.request.GET.get("sn", "")
-        if search_name:
-            search_name = normalize_name(search_name)
-            queryset = queryset.filter(normalized_name__contains=search_name)
-
-        search_category = self.request.GET.get("sc", "")
-        if search_category.isdigit():
-            queryset = queryset.filter(categories__in=[search_category])
-
-        search_ingredients = self.request.GET.get("si", "")
-        if search_ingredients:
-            ingredients = [
-                int(v) for v in search_ingredients.split("-") if v.isdigit()
-            ]
-            queryset = queryset.filter(ingredients__ingredient__in=ingredients)
-
-        search_ingredients_exclude = self.request.GET.get("sie", "")
-        if search_ingredients_exclude:
-            ingredients = [
-                int(v)
-                for v in search_ingredients_exclude.split("-")
-                if v.isdigit()
-            ]
-            queryset = queryset.exclude(
-                ingredients__ingredient__in=ingredients,
-            )
-
-        search_kitchen = self.request.GET.get("sk", "")
-        if search_kitchen.isdigit():
-            queryset = queryset.filter(kitchen=search_kitchen)
-
-        search_level = self.request.GET.get("sl", "")
-        if search_level.isdigit():
-            queryset = queryset.filter(level=search_level)
-
-        ordering = self.request.GET.get("order", "name")
-        if ordering == "new":
-            return queryset.order_by("-created", "name")
-
-        if ordering == "easy":
-            return queryset.order_by("level", "name")
-
-        if ordering == "fast":
-            return queryset.order_by("time", "name")
-
-        return queryset.order_by("name")
+        queryset = Recipe.objects.search(self.request.GET)
+        return Recipe.objects.optimize_for_search_page(queryset)
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -83,7 +36,7 @@ class SearchView(ListView):
 
 class RecipeView(DetailView):
     template_name = "recipes/recipe.html"
-    queryset = Recipe.objects.all()
+    queryset = Recipe.objects.published()
     context_object_name = "recipe"
 
 

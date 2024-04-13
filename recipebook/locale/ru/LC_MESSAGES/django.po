@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 18:45+0300\n"
+"POT-Creation-Date: 2024-04-13 15:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "app__core"
 msgstr "Ядро"
 
-#: .\recipebook\core\models.py:61
+#: .\recipebook\core\models.py:62
 msgid "error__no_unique_name"
 msgstr "Имя не уникально"
 
@@ -53,20 +53,20 @@ msgid "rating__rating_choices__love"
 msgstr "Любовь"
 
 #: .\recipebook\feedback\models.py:22 .\recipebook\feedback\models.py:65
-#: .\recipebook\recipes\models.py:93
+#: .\recipebook\recipes\models.py:96
 msgid "model__foreign__author"
 msgstr "автор"
 
 #: .\recipebook\feedback\models.py:28 .\recipebook\feedback\models.py:71
-#: .\recipebook\recipes\models.py:189 .\recipebook\recipes\models.py:228
+#: .\recipebook\recipes\models.py:192 .\recipebook\recipes\models.py:231
 msgid "model__foreign__recipe"
 msgstr "рецепт"
 
-#: .\recipebook\feedback\models.py:32 .\recipebook\recipes\models.py:97
+#: .\recipebook\feedback\models.py:32 .\recipebook\recipes\models.py:100
 msgid "model__created"
 msgstr "дата создания"
 
-#: .\recipebook\feedback\models.py:36 .\recipebook\recipes\models.py:101
+#: .\recipebook\feedback\models.py:36 .\recipebook\recipes\models.py:104
 msgid "model__updated"
 msgstr "дата изменения"
 
@@ -182,125 +182,125 @@ msgstr "Отклонено"
 msgid "recipes__model__category__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:46
+#: .\recipebook\recipes\models.py:47
 msgid "recipes__model__category__verbose_name"
 msgstr "категория"
 
-#: .\recipebook\recipes\models.py:48
+#: .\recipebook\recipes\models.py:49
 msgid "recipes__model__category__verbose_name_plural"
 msgstr "категории"
 
-#: .\recipebook\recipes\models.py:57
+#: .\recipebook\recipes\models.py:58
 msgid "recipes__model__kitchen__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:62
+#: .\recipebook\recipes\models.py:64
 msgid "recipes__model__kitchen__verbose_name"
 msgstr "кухня"
 
-#: .\recipebook\recipes\models.py:63
+#: .\recipebook\recipes\models.py:65
 msgid "recipes__model__kitchen__verbose_name_plural"
 msgstr "кухни"
 
-#: .\recipebook\recipes\models.py:71
+#: .\recipebook\recipes\models.py:73
 msgid "recipes__model__ingredient__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:76
+#: .\recipebook\recipes\models.py:79
 msgid "recipes__model__ingredient__verbose_name"
 msgstr "ингредиент"
 
-#: .\recipebook\recipes\models.py:78
+#: .\recipebook\recipes\models.py:81
 msgid "recipes__model__ingredient__verbose_name_plural"
 msgstr "ингредиенты"
 
-#: .\recipebook\recipes\models.py:87
+#: .\recipebook\recipes\models.py:90
 msgid "recipes__model__recipe__name"
 msgstr "Название"
 
-#: .\recipebook\recipes\models.py:106
+#: .\recipebook\recipes\models.py:109
 msgid "recipes__model__recipe__state"
 msgstr "состояние"
 
-#: .\recipebook\recipes\models.py:113
+#: .\recipebook\recipes\models.py:116
 msgid "model__foreign__categories"
 msgstr "категории"
 
-#: .\recipebook\recipes\models.py:119
+#: .\recipebook\recipes\models.py:122
 msgid "model__foreign__kitchen"
 msgstr "кухня"
 
-#: .\recipebook\recipes\models.py:125
+#: .\recipebook\recipes\models.py:128
 msgid "recipes__model__recipe__instruction"
 msgstr "инструкции"
 
-#: .\recipebook\recipes\models.py:129
+#: .\recipebook\recipes\models.py:132
 msgid "recipes__model__recipe__main_image"
 msgstr "основное изображение"
 
-#: .\recipebook\recipes\models.py:136
+#: .\recipebook\recipes\models.py:139
 msgid "recipes__model__recipe__level"
 msgstr "сложность"
 
-#: .\recipebook\recipes\models.py:139
+#: .\recipebook\recipes\models.py:142
 msgid "recipes__model__recipe__time"
 msgstr "время приготовления (мин)"
 
-#: .\recipebook\recipes\models.py:143
+#: .\recipebook\recipes\models.py:146
 msgid "recipes__model__recipe__verbose_name"
 msgstr "рецепт"
 
-#: .\recipebook\recipes\models.py:144
+#: .\recipebook\recipes\models.py:147
 msgid "recipes__model__recipe__verbose_name_plural"
 msgstr "рецепты"
 
-#: .\recipebook\recipes\models.py:178 .\recipebook\recipes\models.py:262
+#: .\recipebook\recipes\models.py:181 .\recipebook\recipes\models.py:265
 #: .\recipebook\users\models.py:115
 msgid "model__image__no_image"
 msgstr "Без картинки"
 
-#: .\recipebook\recipes\models.py:180 .\recipebook\recipes\models.py:268
+#: .\recipebook\recipes\models.py:183 .\recipebook\recipes\models.py:271
 #: .\recipebook\users\models.py:117
 msgid "model__image__preview"
 msgstr "предпросмотр"
 
-#: .\recipebook\recipes\models.py:194
+#: .\recipebook\recipes\models.py:197
 msgid "model__foreign__ingredient"
 msgstr "ингредиент"
 
-#: .\recipebook\recipes\models.py:197
+#: .\recipebook\recipes\models.py:200
 msgid "recipes__model__recipe_ingredient__count"
 msgstr "количество"
 
-#: .\recipebook\recipes\models.py:204
+#: .\recipebook\recipes\models.py:207
 msgid "recipes__model__recipe_ingredient__unit"
 msgstr "единица измерения"
 
-#: .\recipebook\recipes\models.py:210
+#: .\recipebook\recipes\models.py:213
 msgid "recipes__model__recipe_ingredient__verbose_name"
 msgstr "ингредиент в рецепте"
 
-#: .\recipebook\recipes\models.py:212
+#: .\recipebook\recipes\models.py:215
 msgid "recipes__model__recipe_ingredient__verbose_name_plural"
 msgstr "ингредиенты в рецептах"
 
-#: .\recipebook\recipes\models.py:216
+#: .\recipebook\recipes\models.py:219
 msgid "recipes__model__recipe_ingredient__str"
 msgstr "[%(id)s] ингредиент %(ingredient)s для %(recipe)s"
 
-#: .\recipebook\recipes\models.py:232
+#: .\recipebook\recipes\models.py:235
 msgid "recipes__model__additional_image__image"
 msgstr "изображение"
 
-#: .\recipebook\recipes\models.py:237
+#: .\recipebook\recipes\models.py:240
 msgid "recipes__model__additional_image__verbose_name"
 msgstr "дополнительное изображение"
 
-#: .\recipebook\recipes\models.py:239
+#: .\recipebook\recipes\models.py:242
 msgid "recipes__model__additional_image__verbose_name_plural"
 msgstr "дополнительные изображения"
 
-#: .\recipebook\recipes\models.py:243
+#: .\recipebook\recipes\models.py:246
 msgid "recipes__model__additional_image__str"
 msgstr "изображение %(id)s для %(recipe)s"
 
@@ -310,9 +310,13 @@ msgstr "изображение %(id)s для %(recipe)s"
 msgid "title"
 msgstr "Книга рецептов"
 
-#: .\recipebook\templates\base.html:32
+#: .\recipebook\templates\base.html:33
 msgid "empty_base_template"
 msgstr "пусто"
+
+#: .\recipebook\templates\includes\footer.html:17
+msgid "footer__set_lang"
+msgstr "Установить"
 
 #: .\recipebook\templates\includes\form.html:47
 msgid "form__send"
@@ -338,7 +342,7 @@ msgstr "Войти"
 msgid "header__user__signup"
 msgstr "Зарегистрироваться"
 
-#: .\recipebook\templates\recipes\search.html:5
+#: .\recipebook\templates\recipes\search.html:6
 msgid "recipes__search__title"
 msgstr "Поиск рецепта"
 

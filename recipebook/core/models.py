@@ -74,7 +74,10 @@ def pre_save(
     if not raw:
         return
 
-    if not isinstance(instance, NormalizedNameMixin) and not isinstance(instance, UniqueNormalizedNameMixin):
+    if not isinstance(
+        instance,
+        (NormalizedNameMixin, UniqueNormalizedNameMixin),
+    ):
         return
 
     normalized = normalize_name(instance.name)

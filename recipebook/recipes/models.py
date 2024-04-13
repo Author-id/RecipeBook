@@ -8,6 +8,7 @@ from sorl.thumbnail import get_thumbnail
 
 from core.models import NormalizedNameMixin, UniqueNormalizedNameMixin
 from core.utils import RandomFileName, render_markdown, Thumbnail
+from recipes.managers import RecipeManager
 from users.models import User
 
 
@@ -86,6 +87,8 @@ class Ingredient(UniqueNormalizedNameMixin, models.Model):
 
 
 class Recipe(NormalizedNameMixin, models.Model):
+    objects: RecipeManager = RecipeManager()
+
     name = models.CharField(
         verbose_name=_("recipes__model__recipe__name"),
         max_length=255,

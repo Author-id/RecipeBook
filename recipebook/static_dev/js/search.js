@@ -67,8 +67,8 @@ inp_category.value = url.searchParams.get("sc") || "";
 inp_kitchen.value = url.searchParams.get("sk") || "";
 inp_level.value = url.searchParams.get("sl") || "";
 
-let ingredients_include = url.searchParams.get("si")?.split("-").filter(v => v && !isNaN(+v)) || [];
-let ingredients_exclude = url.searchParams.get("sie")?.split("-").filter(v => v && !isNaN(+v)) || [];
+const ingredients_include = url.searchParams.get("si")?.split("-").filter(v => v && !isNaN(+v)) || [];
+const ingredients_exclude = url.searchParams.get("sie")?.split("-").filter(v => v && !isNaN(+v)) || [];
 
 
 for (let i = 0; i < ingredient_list.children.length - 1; i++)
@@ -154,13 +154,8 @@ pagination.querySelectorAll("button")
 
 clear_btn.addEventListener("click", () =>
 {
-	inp_name.value = "";
-	inp_category.value = "";
-	inp_kitchen.value = "";
-	inp_level.value = "";
-	ingredients_include = [];
-	ingredients_exclude = [];
-	displayAllIngredients();
+	const url = new URL(window.location);
+	window.location = url.pathname;
 })
 
 
