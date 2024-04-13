@@ -10,7 +10,9 @@ class AdditionalImageAdmin(admin.TabularInline):
         models.AdditionalImage.image_tmb.__name__,
         models.AdditionalImage.image.field.name,
     ]
-    readonly_fields = [models.AdditionalImage.image_tmb.__name__]
+    readonly_fields = [
+        models.AdditionalImage.image_tmb.__name__,
+    ]
     extra = 1
 
 
@@ -42,11 +44,13 @@ class IngredientAdmin(admin.ModelAdmin):
 
 @admin.register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = (
+    list_display = [
         models.Recipe.name.field.name,
         models.Recipe.state.field.name,
-    )
-    list_display_links = (models.Recipe.name.field.name,)
+    ]
+    list_display_links = [
+        models.Recipe.name.field.name,
+    ]
     fieldsets = make_admin_fieldsets(
         [
             models.Recipe.name.field.name,
@@ -63,14 +67,19 @@ class RecipeAdmin(admin.ModelAdmin):
             models.Recipe.instruction.field.name,
         ],
     )
-    filter_horizontal = (models.Recipe.categories.field.name,)
+    filter_horizontal = [
+        models.Recipe.categories.field.name,
+    ]
     readonly_fields = [
         models.Recipe.normalized_name.field.name,
         models.Recipe.created.field.name,
         models.Recipe.updated.field.name,
         models.Recipe.image_tmb.__name__,
     ]
-    inlines = [AdditionalImageAdmin, RecipeIngredientAdmin]
+    inlines = [
+        AdditionalImageAdmin,
+        RecipeIngredientAdmin,
+    ]
 
 
 __all__ = []

@@ -2,15 +2,15 @@
 {% load i18n %}
 
 {% block title %}
-{{recipe.title}}
+{{recipe.name}}
 {% endblock %}
 
 {% block content %}
-<h2 class="text-center mt-4">{{recipe.title}}</h2>
+<h2 class="text-center mt-4">{{recipe.name}}</h2>
 
 <div class="row justify-content-center">
-	<div class="col-12 col-md-6 col-lg-4">
-
+	<div class="col-12 col-md-8">
+		<div class="markdown">{{recipe.get_rendered_instruction|safe}}</div>
 	</div>
 </div>
 {% endblock %}

@@ -2,6 +2,7 @@ from typing import Any
 
 from django.core import exceptions
 from django.db import models
+from django.dispatch import receiver
 from django.utils.translation import gettext as _
 
 from core.utils import normalize_name
@@ -61,6 +62,23 @@ class UniqueNormalizedNameMixin(models.Model):
                     self.__class__.name.field.name: _("error__no_unique_name"),
                 },
             )
+
+
+@receiver(models.signals.pre_save)
+def pre_save(
+    sender: str,
+    instance: Any,
+    raw: bool = False,
+    **kwargs: Any,
+) -> None:
+    if not raw:
+        return
+
+    if not isinstance(instance, NormalizedNameMixin) and not isinstance(instance, UniqueNormalizedNameMixin):
+        return
+
+    normalized = normalize_name(instance.name)
+    instance.normalized_name = normalized
 
 
 __all__ = []
