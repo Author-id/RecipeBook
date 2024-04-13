@@ -6,7 +6,9 @@ from mdeditor.fields import MDTextField
 from sorl.thumbnail import get_thumbnail
 
 
+from core.models import NormalizedNameMixin, UniqueNormalizedNameMixin
 from core.utils import RandomFileName, render_markdown, Thumbnail
+from recipes.managers import RecipeManager
 from users.models import User
 
 
@@ -26,7 +28,7 @@ class IngredientUnit(models.TextChoices):
     PINCH = "PINCH", _("recipes__unit_choices__pinch")
     TEASPOON = "TEASPOON", _("recipes__unit_choices__tea_spoon")
     TABLESPOON = "TABLESPOON", _("recipes__unit_choices__table_spoon")
-    EXTREME = 4, _("recipes__level_choices__extreme")
+    CUP = "CUP", _("recipes__unit_choices__cup")
 
 
 class RecipeState(models.TextChoices):
@@ -35,13 +37,14 @@ class RecipeState(models.TextChoices):
     REJECTED = "REJ", _("recipes__recipe_state__rejected")
 
 
-class Category(models.Model):
+class Category(UniqueNormalizedNameMixin, models.Model):
     name = models.CharField(
         verbose_name=_("recipes__model__category__name"),
         max_length=127,
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__category__verbose_name")
         verbose_name_plural = _(
             "recipes__model__category__verbose_name_plural",
@@ -51,13 +54,14 @@ class Category(models.Model):
         return self.name
 
 
-class Kitchen(models.Model):
+class Kitchen(UniqueNormalizedNameMixin, models.Model):
     name = models.CharField(
         verbose_name=_("recipes__model__kitchen__name"),
         max_length=127,
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__kitchen__verbose_name")
         verbose_name_plural = _("recipes__model__kitchen__verbose_name_plural")
 
@@ -65,13 +69,14 @@ class Kitchen(models.Model):
         return self.name
 
 
-class Ingredient(models.Model):
+class Ingredient(UniqueNormalizedNameMixin, models.Model):
     name = models.CharField(
         verbose_name=_("recipes__model__ingredient__name"),
         max_length=127,
     )
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _("recipes__model__ingredient__verbose_name")
         verbose_name_plural = _(
             "recipes__model__ingredient__verbose_name_plural",
@@ -81,9 +86,11 @@ class Ingredient(models.Model):
         return self.name
 
 
-class Recipe(models.Model):
-    title = models.CharField(
-        verbose_name=_("recipes__model__recipe__title"),
+class Recipe(NormalizedNameMixin, models.Model):
+    objects: RecipeManager = RecipeManager()
+
+    name = models.CharField(
+        verbose_name=_("recipes__model__recipe__name"),
         max_length=255,
     )
     author = models.ForeignKey(
@@ -143,18 +150,24 @@ class Recipe(models.Model):
         verbose_name_plural = _("recipes__model__recipe__verbose_name_plural")
 
     def __str__(self):
-        if len(self.title) > 100:
-            return self.title[:100] + "..."
+        if len(self.name) > 100:
+            return self.name[:100] + "..."
 
-        return self.title
+        return self.name
 
     def get_rendered_instruction(self) -> str:
         return render_markdown(self.instruction)
 
-    def get_image_500(self) -> Thumbnail:
+    def get_image_500(self) -> Thumbnail | None:
+        if not self.main_image:
+            return None
+
         return get_thumbnail(self.main_image, "500", quality=85)
 
-    def get_image_128x128(self) -> Thumbnail:
+    def get_image_128x128(self) -> Thumbnail | None:
+        if not self.main_image:
+            return None
+
         return get_thumbnail(
             self.main_image,
             "128x128",
@@ -213,7 +226,7 @@ class RecipeIngredient(models.Model):
         }
 
 
-class AdditionalImage(models.Model):
+class RecipeImage(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
@@ -221,36 +234,41 @@ class AdditionalImage(models.Model):
         verbose_name=_("model__foreign__recipe"),
     )
     image = models.ImageField(
-        upload_to=RandomFileName("recipes/additional/"),
-        verbose_name=_("recipes__model__additional_image__image"),
+        upload_to=RandomFileName("recipes/recipe/"),
+        verbose_name=_("recipes__model__recipe_image__image"),
     )
 
     class Meta:
-        db_table = "additional_image"
-        verbose_name = _("recipes__model__additional_image__verbose_name")
+        verbose_name = _("recipes__model__recipe_image__verbose_name")
         verbose_name_plural = _(
-            "recipes__model__additional_image__verbose_name_plural",
+            "recipes__model__recipe_image__verbose_name_plural",
         )
 
     def __str__(self):
-        return _("recipes__model__additional_image__str") % {
+        return _("recipes__model__recipe_image__str") % {
             "id": self.id,
             "recipe": self.recipe_id,
         }
 
-    def get_image_500(self) -> Thumbnail:
+    def get_image_500(self) -> Thumbnail | None:
+        if not self.image:
+            return None
+
         return get_thumbnail(self.image, "500", quality=85)
 
-    def get_image_128x128(self) -> Thumbnail:
+    def get_image_128x128(self) -> Thumbnail | None:
+        if not self.image:
+            return None
+
         return get_thumbnail(self.image, "128x128", crop="center", quality=51)
 
     def image_tmb(self) -> str:
-        if self.image:
-            return mark_safe(
-                f'<img src="{self.get_image_128x128().url}"',
-            )
+        if not self.image:
+            return _("model__image__no_image")
 
-        return _("model__image__no_image")
+        return mark_safe(
+            f'<img src="{self.get_image_128x128().url}"',
+        )
 
     image_tmb.short_description = _("model__image__preview")
     image_tmb.allow_tags = True

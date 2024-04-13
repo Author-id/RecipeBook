@@ -169,6 +169,13 @@ git clone https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2.git
 
 ## Использование фикстур
 
+Для ознакомления с проектом или тестов, Вы можете зарузить заренее подготовленные данные.
+
+В данных содержаться пользователи:
+* логин: admin, пароль: admin
+* логин: 12, пароль: 1
+* логин: egor, пароль: 1
+
 ### Загрузка
 
 ```console
@@ -195,7 +202,7 @@ rmdir -r fixtures/media
 rsync -a --exclude={'cache/'} media fixtures/media
 ```
 
-для Windows:
+для Windows (cmd):
 
 ```console
 cd recipebook

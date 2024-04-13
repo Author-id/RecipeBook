@@ -5,12 +5,14 @@ from recipes import models
 
 
 class AdditionalImageAdmin(admin.TabularInline):
-    model = models.AdditionalImage
+    model = models.RecipeImage
     fields = [
-        models.AdditionalImage.image_tmb.__name__,
-        models.AdditionalImage.image.field.name,
+        models.RecipeImage.image_tmb.__name__,
+        models.RecipeImage.image.field.name,
     ]
-    readonly_fields = [models.AdditionalImage.image_tmb.__name__]
+    readonly_fields = [
+        models.RecipeImage.image_tmb.__name__,
+    ]
     extra = 1
 
 
@@ -21,29 +23,38 @@ class RecipeIngredientAdmin(admin.TabularInline):
 
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = [
+        models.Category.normalized_name.field.name,
+    ]
 
 
 @admin.register(models.Kitchen)
 class KitchenAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = [
+        models.Kitchen.normalized_name.field.name,
+    ]
 
 
 @admin.register(models.Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = [
+        models.Ingredient.normalized_name.field.name,
+    ]
 
 
 @admin.register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = (
-        models.Recipe.title.field.name,
+    list_display = [
+        models.Recipe.name.field.name,
         models.Recipe.state.field.name,
-    )
-    list_display_links = (models.Recipe.title.field.name,)
+    ]
+    list_display_links = [
+        models.Recipe.name.field.name,
+    ]
     fieldsets = make_admin_fieldsets(
         [
-            models.Recipe.title.field.name,
+            models.Recipe.name.field.name,
+            models.Recipe.normalized_name.field.name,
             models.Recipe.author.field.name,
             models.Recipe.created.field.name,
             models.Recipe.updated.field.name,
@@ -56,13 +67,19 @@ class RecipeAdmin(admin.ModelAdmin):
             models.Recipe.instruction.field.name,
         ],
     )
-    filter_horizontal = (models.Recipe.categories.field.name,)
+    filter_horizontal = [
+        models.Recipe.categories.field.name,
+    ]
     readonly_fields = [
+        models.Recipe.normalized_name.field.name,
         models.Recipe.created.field.name,
         models.Recipe.updated.field.name,
         models.Recipe.image_tmb.__name__,
     ]
-    inlines = [AdditionalImageAdmin, RecipeIngredientAdmin]
+    inlines = [
+        AdditionalImageAdmin,
+        RecipeIngredientAdmin,
+    ]
 
 
 __all__ = []

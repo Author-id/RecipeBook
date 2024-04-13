@@ -22,6 +22,7 @@
 	<title>{% block title %}{% translate "title" %}{% endblock %}</title>
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	{% block head %}{% endblock %}
 	<script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
 </head>
 
