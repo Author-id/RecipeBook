@@ -20,6 +20,11 @@ urlpatterns = [
         views.RecipeView.as_view(),
         name="recipe",
     ),
+    path(
+        "recipe/<int:pk>/edit",
+        views.RecipeEditView.as_view(),
+        name="recipe-edit",
+    ),
 ]
 
 
