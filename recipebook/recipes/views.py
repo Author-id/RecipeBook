@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView, TemplateView
 
 from feedback.models import Rate
-from recipes.forms import DeleteRatingForm, RatingForm
+from recipes.forms import DeleteRatingForm, RatingForm, RecipeForm
 from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 
 
@@ -101,6 +101,36 @@ class RecipeView(DetailView):
             if user_rating and delete_form.is_valid():
                 user_rating.delete()
                 return redirect(reverse("recipes:recipe", args=[pk]))
+
+        return self.render_to_response(context)
+
+
+class RecipeEditView(DetailView):
+    template_name = "recipes/recipe_edit.html"
+    queryset = Recipe.objects.published()
+    context_object_name = "recipe"
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        item = self.get_object()
+
+        context.update(
+            {
+                "form": RecipeForm(instance=item),
+            },
+        )
+
+        return context
+
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse:
+        self.object = self.get_object()
+        context = self.get_context_data()
+        form = RecipeForm(request.POST, instance=self.object)
+        context["form"] = form
+        if self.request.user.is_authenticated:
+            if form.is_valid():
+                form.save()
+                return redirect(reverse("recipes:recipe-edit", args=[pk]))
 
         return self.render_to_response(context)
 
