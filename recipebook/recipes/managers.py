@@ -130,5 +130,45 @@ class RecipeManager(Manager["models.Recipe"]):
             models.Recipe.time.field.name,
         )
 
+    def optimize_for_detail_page(self, queryset: QuerySet) -> QuerySet:
+        queryset = queryset.select_related(
+            models.Recipe.author.field.name,
+            models.Recipe.kitchen.field.name,
+        )
+        queryset = queryset.prefetch_related(
+            Prefetch(
+                models.Recipe.categories.field.name,
+                queryset=models.Category.objects.all().only(
+                    models.Category.name.field.name,
+                ),
+            ),
+            Prefetch(
+                models.Recipe.ingredients.field.related_query_name(),
+                queryset=models.RecipeIngredient.objects.all()
+                .select_related(models.RecipeIngredient.ingredient.field.name)
+                .only(
+                    models.RecipeIngredient.recipe.field.name,
+                    models.RecipeIngredient.ingredient.field.name
+                    + "__"
+                    + models.Ingredient.name.field.name,
+                    models.RecipeIngredient.count.field.name,
+                    models.RecipeIngredient.unit.field.name,
+                ),
+            ),
+        )
+        return queryset.only(
+            models.Recipe.name.field.name,
+            models.Recipe.author.field.name + "__" + User.username.field.name,
+            models.Recipe.created.field.name,
+            models.Recipe.state.field.name,
+            models.Recipe.kitchen.field.name
+            + "__"
+            + models.Kitchen.name.field.name,
+            models.Recipe.main_image.field.name,
+            models.Recipe.level.field.name,
+            models.Recipe.time.field.name,
+            models.Recipe.instruction.field.name,
+        )
+
 
 __all__ = []

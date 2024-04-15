@@ -44,6 +44,7 @@
 			<div class="d-flex align-items-end">
 				<div>
 					<p class="mb-0">{% blocktranslate count counter=rating_count %}recipe__rating {{counter}}{{ rating }}{% plural %}recipe__rating {{counter}}{{ rating }}{% endblocktranslate %}</p>
+					{% if user.is_authenticated %}
 					{% if user_rating %}
 					<p class="mb-0">{% translate "recipe__user_rating" %} {{ user_rating.value }}</p>
 					{% endif %}
@@ -53,6 +54,7 @@
 				<div>
 					{% translate "recipe__delete_rate" as submit_delete_text %}
 					{% include "includes/form.html" with form=delete_rating_form submit_text=submit_delete_text %}
+					{% endif %}
 				</div>
 			</div>
 		</div>
