@@ -42,7 +42,9 @@ class SearchView(ListView):
 
 class RecipeView(DetailView):
     template_name = "recipes/recipe.html"
-    queryset = Recipe.objects.optimize_for_detail_page(Recipe.objects.published())
+    queryset = Recipe.objects.optimize_for_detail_page(
+        Recipe.objects.published(),
+    )
     context_object_name = "recipe"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
