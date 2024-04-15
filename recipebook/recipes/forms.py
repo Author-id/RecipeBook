@@ -5,20 +5,7 @@ from django.core.exceptions import ValidationError
 from django.forms.renderers import TemplatesSetting
 
 from core.forms import BaseForm
-from feedback.models import Rate
-from recipes import models
-
-
-class RatingForm(forms.ModelForm, BaseForm):
-    class Meta:
-        model = Rate
-        fields = [
-            model.value.field.name,
-        ]
-
-
-class DeleteRatingForm(BaseForm):
-    delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+from recipes.models import Ingredient, IngredientUnit, Recipe, RecipeIngredient
 
 
 class IngredientsWidget(forms.Widget):
@@ -83,8 +70,8 @@ class IngredientsWidget(forms.Widget):
         context["widget"]["id"] = id_
         context["widget"]["name"] = name
         context["widget"]["subwidgets"] = value
-        context["widget"]["unit_options"] = models.IngredientUnit.choices
-        context["widget"]["ingredients"] = models.Ingredient.objects.all()
+        context["widget"]["unit_options"] = IngredientUnit.choices
+        context["widget"]["ingredients"] = Ingredient.objects.all()
 
         return context
 
@@ -133,18 +120,18 @@ class IngredientsField(forms.Field):
                 )
 
             try:
-                ingredient = models.Ingredient.objects.get(id=int(ingredient))
-                ri = models.RecipeIngredient()
+                ingredient = Ingredient.objects.get(id=int(ingredient))
+                ri = RecipeIngredient()
                 ri.ingredient = ingredient
                 ri.count = count
                 ri.unit = unit
                 ri.clean_fields()
             except ValidationError as er:
                 er = dict(er)
-                del er[models.RecipeIngredient.recipe.field.name]
+                del er[RecipeIngredient.recipe.field.name]
                 if er != {}:
                     raise forms.ValidationError(str(er))
-            except models.Ingredient.DoesNotExist as er:
+            except Ingredient.DoesNotExist as er:
                 raise forms.ValidationError(str(er))
 
             cleaned.append(
@@ -164,14 +151,14 @@ class RecipeForm(forms.ModelForm, BaseForm):
     ingredients = IngredientsField()
 
     class Meta:
-        model = models.Recipe
+        model = Recipe
         fields = [
-            models.Recipe.name.field.name,
-            models.Recipe.main_image.field.name,
-            models.Recipe.categories.field.name,
-            models.Recipe.level.field.name,
-            models.Recipe.time.field.name,
-            models.Recipe.instruction.field.name,
+            Recipe.name.field.name,
+            Recipe.main_image.field.name,
+            Recipe.categories.field.name,
+            Recipe.level.field.name,
+            Recipe.time.field.name,
+            Recipe.instruction.field.name,
         ]
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -179,8 +166,8 @@ class RecipeForm(forms.ModelForm, BaseForm):
         instance = kwargs["instance"]
         self.initial["ingredients"] = instance.ingredients.all()
 
-    def save(self, commit: bool = True) -> models.Recipe:
-        instance: models.Recipe = super().save(commit)
+    def save(self, commit: bool = True) -> Recipe:
+        instance: Recipe = super().save(commit)
         ingredients_quary = instance.ingredients.all()
         ingredients_current = list(ingredients_quary)
         ingredients_new = self.cleaned_data["ingredients"]
@@ -238,7 +225,7 @@ class RecipeForm(forms.ModelForm, BaseForm):
                 continue
 
             created_ingredients.append(
-                models.RecipeIngredient(
+                RecipeIngredient(
                     recipe=instance,
                     ingredient=ingredient,
                     count=count,
@@ -247,21 +234,21 @@ class RecipeForm(forms.ModelForm, BaseForm):
             )
 
         if deleted_ingredients:
-            models.RecipeIngredient.objects.filter(
+            RecipeIngredient.objects.filter(
                 id__in=deleted_ingredients,
             ).delete()
 
-        models.RecipeIngredient.objects.bulk_update(
+        RecipeIngredient.objects.bulk_update(
             ingredients_quary,
             fields=[
-                models.RecipeIngredient.ingredient.field.name,
-                models.RecipeIngredient.count.field.name,
-                models.RecipeIngredient.unit.field.name,
+                RecipeIngredient.ingredient.field.name,
+                RecipeIngredient.count.field.name,
+                RecipeIngredient.unit.field.name,
             ],
         )
 
         if created_ingredients:
-            models.RecipeIngredient.objects.bulk_create(created_ingredients)
+            RecipeIngredient.objects.bulk_create(created_ingredients)
 
         return instance
 

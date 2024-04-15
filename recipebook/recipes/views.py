@@ -7,8 +7,14 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, TemplateView
 
-from feedback.models import Rate
-from recipes.forms import DeleteRatingForm, RatingForm, RecipeForm
+from feedback.forms import (
+    CommentForm,
+    DeleteCommentForm,
+    DeleteRatingForm,
+    RatingForm,
+)
+from feedback.models import Comment, Rate
+from recipes.forms import RecipeForm
 from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 
 
@@ -65,10 +71,20 @@ class RecipeView(DetailView):
                 recipe=recipe,
             ).first()
 
+        comments = list(Comment.objects.filter(recipe=recipe).all())
+        user_comment = None
+        for i, comment in enumerate(comments):
+            if comment.author_id == self.request.user.id:
+                user_comment = comment
+                del comments[i]
+                break
+
         context.update(
             {
                 "rating_form": RatingForm(instance=user_rating),
                 "delete_rating_form": DeleteRatingForm(),
+                "comment_form": CommentForm(instance=user_comment),
+                "delete_comment_form": DeleteCommentForm(),
                 "rating": (
                     round(rating_sum / rating_count, 2)
                     if rating_count > 0
@@ -76,6 +92,8 @@ class RecipeView(DetailView):
                 ),
                 "rating_count": rating_count,
                 "user_rating": user_rating,
+                "user_comment": user_comment,
+                "comments": comments,
             },
         )
 
@@ -85,23 +103,40 @@ class RecipeView(DetailView):
         self.object = self.get_object()
         context = self.get_context_data()
         user_rating = context["user_rating"]
-        form = RatingForm(request.POST, instance=user_rating)
-        delete_form = DeleteRatingForm(request.POST)
-        context["rating_form"] = form
+        user_comment = context["user_comment"]
+        rating_form = RatingForm(request.POST, instance=user_rating)
+        comment_form = CommentForm(request.POST, instance=user_comment)
+        delete_rating_form = DeleteRatingForm(request.POST)
+        delete_comment_form = DeleteCommentForm(request.POST)
         if self.request.user.is_authenticated:
-            if form.is_valid():
+            if rating_form.is_valid():
                 if user_rating:
-                    form.save()
+                    rating_form.save()
                 else:
-                    user_rating = form.save(False)
+                    user_rating = rating_form.save(False)
                     user_rating.author = self.request.user
                     user_rating.recipe = self.object
                     user_rating.save()
 
                 return redirect(reverse("recipes:recipe", args=[pk]))
 
-            if user_rating and delete_form.is_valid():
+            if user_rating and delete_rating_form.is_valid():
                 user_rating.delete()
+                return redirect(reverse("recipes:recipe", args=[pk]))
+
+            if comment_form.is_valid():
+                if user_comment:
+                    comment_form.save()
+                else:
+                    user_comment = comment_form.save(False)
+                    user_comment.author = self.request.user
+                    user_comment.recipe = self.object
+                    user_comment.save()
+
+                return redirect(reverse("recipes:recipe", args=[pk]))
+
+            if user_comment and delete_comment_form.is_valid():
+                user_comment.delete()
                 return redirect(reverse("recipes:recipe", args=[pk]))
 
         return self.render_to_response(context)

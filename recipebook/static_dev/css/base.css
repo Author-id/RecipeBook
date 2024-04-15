@@ -17,6 +17,7 @@
 
 .markdown img {
 	border-radius: 0.5rem;
+	max-height: 40vh;
 }
 
 .markdown table {
