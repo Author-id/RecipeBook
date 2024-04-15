@@ -19,6 +19,11 @@ urlpatterns = [
         name="signup",
     ),
     path(
+        "profile/",
+        u_views.ProfileView.as_view(),
+        name="profile",
+    ),
+    path(
         "activate/<uidb64>/<token>",
         u_views.ActivateView.as_view(),
         name="activate",
