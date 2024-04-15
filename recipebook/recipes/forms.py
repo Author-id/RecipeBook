@@ -5,7 +5,20 @@ from django.core.exceptions import ValidationError
 from django.forms.renderers import TemplatesSetting
 
 from core.forms import BaseForm
+from feedback.models import Rate
 from recipes import models
+
+
+class RatingForm(forms.ModelForm, BaseForm):
+    class Meta:
+        model = Rate
+        fields = [
+            model.value.field.name,
+        ]
+
+
+class DeleteRatingForm(BaseForm):
+    delete = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
 class IngredientsWidget(forms.Widget):

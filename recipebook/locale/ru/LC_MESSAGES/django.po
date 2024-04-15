@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-13 15:04+0300\n"
+"POT-Creation-Date: 2024-04-15 14:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,20 +53,20 @@ msgid "rating__rating_choices__love"
 msgstr "Любовь"
 
 #: .\recipebook\feedback\models.py:22 .\recipebook\feedback\models.py:65
-#: .\recipebook\recipes\models.py:96
+#: .\recipebook\recipes\models.py:99
 msgid "model__foreign__author"
 msgstr "автор"
 
 #: .\recipebook\feedback\models.py:28 .\recipebook\feedback\models.py:71
-#: .\recipebook\recipes\models.py:192 .\recipebook\recipes\models.py:231
+#: .\recipebook\recipes\models.py:195 .\recipebook\recipes\models.py:234
 msgid "model__foreign__recipe"
 msgstr "рецепт"
 
-#: .\recipebook\feedback\models.py:32 .\recipebook\recipes\models.py:100
+#: .\recipebook\feedback\models.py:32 .\recipebook\recipes\models.py:103
 msgid "model__created"
 msgstr "дата создания"
 
-#: .\recipebook\feedback\models.py:36 .\recipebook\recipes\models.py:104
+#: .\recipebook\feedback\models.py:36 .\recipebook\recipes\models.py:107
 msgid "model__updated"
 msgstr "дата изменения"
 
@@ -114,193 +114,193 @@ msgstr "Английский"
 msgid "app__recipes"
 msgstr "Рецепты"
 
-#: .\recipebook\recipes\models.py:15
+#: .\recipebook\recipes\models.py:16
 msgid "recipes__level_choices__easy"
 msgstr "Лёгко"
 
-#: .\recipebook\recipes\models.py:16
+#: .\recipebook\recipes\models.py:17
 msgid "recipes__level_choices__normal"
 msgstr "Нормально"
 
-#: .\recipebook\recipes\models.py:17
+#: .\recipebook\recipes\models.py:18
 msgid "recipes__level_choices__hard"
 msgstr "Тяжело"
 
-#: .\recipebook\recipes\models.py:18
+#: .\recipebook\recipes\models.py:19
 msgid "recipes__level_choices__extreme"
 msgstr "Очень тяжело"
 
-#: .\recipebook\recipes\models.py:22
+#: .\recipebook\recipes\models.py:23
 msgid "recipes__unit_choices__grams"
 msgstr "Граммы"
 
-#: .\recipebook\recipes\models.py:23
+#: .\recipebook\recipes\models.py:24
 msgid "recipes__unit_choices__kilogramme"
 msgstr "Килограммы"
 
-#: .\recipebook\recipes\models.py:24
+#: .\recipebook\recipes\models.py:25
 msgid "recipes__unit_choices__litre"
 msgstr "Литры"
 
-#: .\recipebook\recipes\models.py:25
+#: .\recipebook\recipes\models.py:26
 msgid "recipes__unit_choices__millilitre"
 msgstr "Миллилитры"
 
-#: .\recipebook\recipes\models.py:26
+#: .\recipebook\recipes\models.py:27
 msgid "recipes__unit_choices__piece"
 msgstr "Штука"
 
-#: .\recipebook\recipes\models.py:27
+#: .\recipebook\recipes\models.py:28
 msgid "recipes__unit_choices__pinch"
 msgstr "Щепотка"
 
-#: .\recipebook\recipes\models.py:28
+#: .\recipebook\recipes\models.py:29
 msgid "recipes__unit_choices__tea_spoon"
 msgstr "Чайная ложка"
 
-#: .\recipebook\recipes\models.py:29
+#: .\recipebook\recipes\models.py:30
 msgid "recipes__unit_choices__table_spoon"
 msgstr "Столовая ложка"
 
-#: .\recipebook\recipes\models.py:30
+#: .\recipebook\recipes\models.py:31
 msgid "recipes__unit_choices__cup"
 msgstr "Чашка"
 
-#: .\recipebook\recipes\models.py:34
+#: .\recipebook\recipes\models.py:35
 msgid "recipes__recipe_state__published"
 msgstr "Опубликовано"
 
-#: .\recipebook\recipes\models.py:35
+#: .\recipebook\recipes\models.py:36
 msgid "recipes__recipe_state__moderated"
 msgstr "На модерации"
 
-#: .\recipebook\recipes\models.py:36
+#: .\recipebook\recipes\models.py:37
 msgid "recipes__recipe_state__rejected"
 msgstr "Отклонено"
 
-#: .\recipebook\recipes\models.py:41
+#: .\recipebook\recipes\models.py:42
 msgid "recipes__model__category__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:47
+#: .\recipebook\recipes\models.py:48
 msgid "recipes__model__category__verbose_name"
 msgstr "категория"
 
-#: .\recipebook\recipes\models.py:49
+#: .\recipebook\recipes\models.py:50
 msgid "recipes__model__category__verbose_name_plural"
 msgstr "категории"
 
-#: .\recipebook\recipes\models.py:58
+#: .\recipebook\recipes\models.py:59
 msgid "recipes__model__kitchen__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:64
+#: .\recipebook\recipes\models.py:65
 msgid "recipes__model__kitchen__verbose_name"
 msgstr "кухня"
 
-#: .\recipebook\recipes\models.py:65
+#: .\recipebook\recipes\models.py:66
 msgid "recipes__model__kitchen__verbose_name_plural"
 msgstr "кухни"
 
-#: .\recipebook\recipes\models.py:73
+#: .\recipebook\recipes\models.py:74
 msgid "recipes__model__ingredient__name"
 msgstr "название"
 
-#: .\recipebook\recipes\models.py:79
+#: .\recipebook\recipes\models.py:80
 msgid "recipes__model__ingredient__verbose_name"
 msgstr "ингредиент"
 
-#: .\recipebook\recipes\models.py:81
+#: .\recipebook\recipes\models.py:82
 msgid "recipes__model__ingredient__verbose_name_plural"
 msgstr "ингредиенты"
 
-#: .\recipebook\recipes\models.py:90
+#: .\recipebook\recipes\models.py:93
 msgid "recipes__model__recipe__name"
 msgstr "Название"
 
-#: .\recipebook\recipes\models.py:109
+#: .\recipebook\recipes\models.py:112
 msgid "recipes__model__recipe__state"
 msgstr "состояние"
 
-#: .\recipebook\recipes\models.py:116
+#: .\recipebook\recipes\models.py:119
 msgid "model__foreign__categories"
 msgstr "категории"
 
-#: .\recipebook\recipes\models.py:122
+#: .\recipebook\recipes\models.py:125
 msgid "model__foreign__kitchen"
 msgstr "кухня"
 
-#: .\recipebook\recipes\models.py:128
+#: .\recipebook\recipes\models.py:131
 msgid "recipes__model__recipe__instruction"
 msgstr "инструкции"
 
-#: .\recipebook\recipes\models.py:132
+#: .\recipebook\recipes\models.py:135
 msgid "recipes__model__recipe__main_image"
 msgstr "основное изображение"
 
-#: .\recipebook\recipes\models.py:139
+#: .\recipebook\recipes\models.py:142
 msgid "recipes__model__recipe__level"
 msgstr "сложность"
 
-#: .\recipebook\recipes\models.py:142
+#: .\recipebook\recipes\models.py:145
 msgid "recipes__model__recipe__time"
 msgstr "время приготовления (мин)"
 
-#: .\recipebook\recipes\models.py:146
+#: .\recipebook\recipes\models.py:149
 msgid "recipes__model__recipe__verbose_name"
 msgstr "рецепт"
 
-#: .\recipebook\recipes\models.py:147
+#: .\recipebook\recipes\models.py:150
 msgid "recipes__model__recipe__verbose_name_plural"
 msgstr "рецепты"
 
-#: .\recipebook\recipes\models.py:181 .\recipebook\recipes\models.py:265
+#: .\recipebook\recipes\models.py:184 .\recipebook\recipes\models.py:267
 #: .\recipebook\users\models.py:115
 msgid "model__image__no_image"
 msgstr "Без картинки"
 
-#: .\recipebook\recipes\models.py:183 .\recipebook\recipes\models.py:271
+#: .\recipebook\recipes\models.py:186 .\recipebook\recipes\models.py:273
 #: .\recipebook\users\models.py:117
 msgid "model__image__preview"
 msgstr "предпросмотр"
 
-#: .\recipebook\recipes\models.py:197
+#: .\recipebook\recipes\models.py:200
 msgid "model__foreign__ingredient"
 msgstr "ингредиент"
 
-#: .\recipebook\recipes\models.py:200
+#: .\recipebook\recipes\models.py:203
 msgid "recipes__model__recipe_ingredient__count"
 msgstr "количество"
 
-#: .\recipebook\recipes\models.py:207
+#: .\recipebook\recipes\models.py:210
 msgid "recipes__model__recipe_ingredient__unit"
 msgstr "единица измерения"
 
-#: .\recipebook\recipes\models.py:213
+#: .\recipebook\recipes\models.py:216
 msgid "recipes__model__recipe_ingredient__verbose_name"
 msgstr "ингредиент в рецепте"
 
-#: .\recipebook\recipes\models.py:215
+#: .\recipebook\recipes\models.py:218
 msgid "recipes__model__recipe_ingredient__verbose_name_plural"
 msgstr "ингредиенты в рецептах"
 
-#: .\recipebook\recipes\models.py:219
+#: .\recipebook\recipes\models.py:222
 msgid "recipes__model__recipe_ingredient__str"
 msgstr "[%(id)s] ингредиент %(ingredient)s для %(recipe)s"
 
-#: .\recipebook\recipes\models.py:235
+#: .\recipebook\recipes\models.py:238
 msgid "recipes__model__recipe_image__image"
 msgstr "изображение"
 
-#: .\recipebook\recipes\models.py:240
+#: .\recipebook\recipes\models.py:242
 msgid "recipes__model__recipe_image__verbose_name"
 msgstr "изображение рецепта"
 
-#: .\recipebook\recipes\models.py:242
+#: .\recipebook\recipes\models.py:244
 msgid "recipes__model__recipe_image__verbose_name_plural"
 msgstr "изображения рецепта"
 
-#: .\recipebook\recipes\models.py:246
+#: .\recipebook\recipes\models.py:248
 msgid "recipes__model__recipe_image__str"
 msgstr "изображение %(id)s для %(recipe)s"
 
@@ -310,7 +310,7 @@ msgstr "изображение %(id)s для %(recipe)s"
 msgid "title"
 msgstr "Книга рецептов"
 
-#: .\recipebook\templates\base.html:33
+#: .\recipebook\templates\base.html:35
 msgid "empty_base_template"
 msgstr "пусто"
 
@@ -341,6 +341,27 @@ msgstr "Войти"
 #: .\recipebook\templates\includes\header.html:51
 msgid "header__user__signup"
 msgstr "Зарегистрироваться"
+
+#: .\recipebook\templates\recipes\recipe.html:16
+#, python-format
+msgid "recipe__rating %(counter)s%(rating)s"
+msgid_plural "recipe__rating %(counter)s%(rating)s"
+msgstr[0] "Рейтин: %(rating)s (%(counter)s оценка)"
+msgstr[1] "Рейтин: %(rating)s (%(counter)s оценки)"
+msgstr[2] "Рейтин: %(rating)s (%(counter)s оценок)"
+msgstr[3] "Рейтин: %(rating)s (%(counter)s оценок)"
+
+#: .\recipebook\templates\recipes\recipe.html:18
+msgid "recipe__user_rating"
+msgstr "Ваша оценка: "
+
+#: .\recipebook\templates\recipes\recipe.html:20
+msgid "recipe__rate"
+msgstr "Оценить"
+
+#: .\recipebook\templates\recipes\recipe.html:24
+msgid "recipe__delete_rate"
+msgstr "Удалить оценку"
 
 #: .\recipebook\templates\recipes\search.html:6
 msgid "recipes__search__title"
