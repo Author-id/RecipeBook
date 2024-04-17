@@ -88,4 +88,32 @@ class Rate(models.Model):
         }
 
 
+class Cooked(models.Model):
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="cooked",
+        verbose_name=_("model__foreign__author"),
+    )
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name="cooked",
+        verbose_name=_("model__foreign__recipe"),
+    )
+
+    class Meta:
+        verbose_name = _("feedback__model__cooked__verbose_name")
+        verbose_name_plural = _("feedback__model__cooked__verbose_name_plural")
+        unique_together = (
+            (
+                "author",
+                "recipe",
+            ),
+        )
+
+    def __str__(self):
+        return f"{self.user.username} prepared {self.recipe.title}"
+
+
 __all__ = []

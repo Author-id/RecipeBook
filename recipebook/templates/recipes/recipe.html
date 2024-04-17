@@ -81,6 +81,13 @@
 				</div>
 				{% empty %}Нет комментариев{% endfor %}
 			</div>
+			{% if user.is_authenticated %}
+			  {% if not user_cooked %}
+			    {% include "includes/form.html" with form=cook_form submit_text="Отметить как приготовленное" %}
+			  {% else %}
+                {% include "includes/form.html" with form=delete_cook_form submit_text="Убрать отметку о приготовлении" %}
+			  {% endif %}
+            {% endif %}
 		</div>
 	</div>
 {% endblock %}
