@@ -140,6 +140,11 @@ class RecipeView(DetailView):
                 return redirect(reverse("recipes:recipe", args=[pk]))
 
             if self.request.user.is_authenticated:
+
+                if user_cooked and delete_cook_form.is_valid():
+                    user_cooked.delete()
+                    return redirect(reverse("recipes:recipe", args=[pk]))
+
                 if cook_form.is_valid():
                     if user_cooked:
                         cook_form.save()
@@ -149,10 +154,6 @@ class RecipeView(DetailView):
                         user_cooked.recipe = self.object
                         user_cooked.save()
 
-                    return redirect(reverse("recipes:recipe", args=[pk]))
-
-                if user_cooked and delete_cook_form.is_valid():
-                    user_cooked.delete()
                     return redirect(reverse("recipes:recipe", args=[pk]))
 
             if comment_form.is_valid():
