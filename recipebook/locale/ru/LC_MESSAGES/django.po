@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-15 14:48+0300\n"
+"POT-Creation-Date: 2024-04-20 15:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,12 +53,13 @@ msgid "rating__rating_choices__love"
 msgstr "Любовь"
 
 #: .\recipebook\feedback\models.py:22 .\recipebook\feedback\models.py:65
-#: .\recipebook\recipes\models.py:99
+#: .\recipebook\feedback\models.py:96 .\recipebook\recipes\models.py:99
 msgid "model__foreign__author"
 msgstr "автор"
 
 #: .\recipebook\feedback\models.py:28 .\recipebook\feedback\models.py:71
-#: .\recipebook\recipes\models.py:195 .\recipebook\recipes\models.py:234
+#: .\recipebook\feedback\models.py:102 .\recipebook\recipes\models.py:195
+#: .\recipebook\recipes\models.py:234
 msgid "model__foreign__recipe"
 msgstr "рецепт"
 
@@ -101,6 +102,18 @@ msgstr "оценки"
 #: .\recipebook\feedback\models.py:84
 msgid "feedback__model__rated__str"
 msgstr "оценка %(id)s от %(author)s к %(recipe)s"
+
+#: .\recipebook\feedback\models.py:107
+msgid "feedback__model__cooked__verbose_name"
+msgstr "приготовлено"
+
+#: .\recipebook\feedback\models.py:108
+msgid "feedback__model__cooked__verbose_name_plural"
+msgstr "приготовленные"
+
+#: .\recipebook\feedback\models.py:111
+msgid "feedback__model__cooked__str"
+msgstr "приготовлено %(id)s от %(author)s к %(recipe)s"
 
 #: .\recipebook\recipebook\settings.py:135
 msgid "Russian"
@@ -310,7 +323,7 @@ msgstr "изображение %(id)s для %(recipe)s"
 msgid "title"
 msgstr "Книга рецептов"
 
-#: .\recipebook\templates\base.html:35
+#: .\recipebook\templates\base.html:33
 msgid "empty_base_template"
 msgstr "пусто"
 
@@ -326,23 +339,27 @@ msgstr "Отправить"
 msgid "nav_menu__admin"
 msgstr "Админка"
 
-#: .\recipebook\templates\includes\header.html:40
+#: .\recipebook\templates\includes\header.html:38
+msgid "header__user__profile"
+msgstr "Профиль"
+
+#: .\recipebook\templates\includes\header.html:39
 msgid "header__user__change_password"
 msgstr "Сменить пароль"
 
-#: .\recipebook\templates\includes\header.html:42
+#: .\recipebook\templates\includes\header.html:41
 msgid "header__user__logout"
 msgstr "Выйти"
 
-#: .\recipebook\templates\includes\header.html:48
+#: .\recipebook\templates\includes\header.html:47
 msgid "header__user__login"
 msgstr "Войти"
 
-#: .\recipebook\templates\includes\header.html:51
+#: .\recipebook\templates\includes\header.html:50
 msgid "header__user__signup"
 msgstr "Зарегистрироваться"
 
-#: .\recipebook\templates\recipes\recipe.html:16
+#: .\recipebook\templates\recipes\recipe.html:46
 #, python-format
 msgid "recipe__rating %(counter)s%(rating)s"
 msgid_plural "recipe__rating %(counter)s%(rating)s"
@@ -351,15 +368,15 @@ msgstr[1] "Рейтин: %(rating)s (%(counter)s оценки)"
 msgstr[2] "Рейтин: %(rating)s (%(counter)s оценок)"
 msgstr[3] "Рейтин: %(rating)s (%(counter)s оценок)"
 
-#: .\recipebook\templates\recipes\recipe.html:18
+#: .\recipebook\templates\recipes\recipe.html:49
 msgid "recipe__user_rating"
 msgstr "Ваша оценка: "
 
-#: .\recipebook\templates\recipes\recipe.html:20
+#: .\recipebook\templates\recipes\recipe.html:51
 msgid "recipe__rate"
 msgstr "Оценить"
 
-#: .\recipebook\templates\recipes\recipe.html:24
+#: .\recipebook\templates\recipes\recipe.html:57
 msgid "recipe__delete_rate"
 msgstr "Удалить оценку"
 
@@ -508,6 +525,15 @@ msgstr "Пожалуйста, перейдите на следующую стр�
 msgid "password_reset_email__username"
 msgstr "Ваше имя пользователя, на случай, если вы забыли:"
 
+#: .\recipebook\templates\users\profile.html:6
+#: .\recipebook\templates\users\profile.html:10
+msgid "profile__title"
+msgstr "Профиль"
+
+#: .\recipebook\templates\users\profile.html:28
+msgid "profile__submit"
+msgstr "Изменить"
+
 #: .\recipebook\templates\users\signup.html:5
 #: .\recipebook\templates\users\signup.html:9
 msgid "signup__title"
@@ -559,24 +585,28 @@ msgstr "пользователь"
 msgid "users__model__user__verbose_name_plural"
 msgstr "пользователи"
 
-#: .\recipebook\users\views.py:46
+#: .\recipebook\users\views.py:48
 msgid "signup__mail__subject"
 msgstr "Регистрация"
 
-#: .\recipebook\users\views.py:54
+#: .\recipebook\users\views.py:56
 msgid "signup__success_message"
 msgstr ""
 "Для завершения регистрации пройдите по ссылке, отправленной вам на почту: "
 "%(email)s"
 
-#: .\recipebook\users\views.py:72
+#: .\recipebook\users\views.py:74
 msgid "activate__error_message"
 msgstr "Недействительная ссылка"
 
-#: .\recipebook\users\views.py:79 .\recipebook\users\views.py:82
+#: .\recipebook\users\views.py:81 .\recipebook\users\views.py:84
 msgid "activate__old_message"
 msgstr "Недействительная ссылка: срок действия истёк"
 
-#: .\recipebook\users\views.py:88
+#: .\recipebook\users\views.py:90
 msgid "activate__success_message"
 msgstr "Ваш аккаунт успешно активирован!"
+
+#: .\recipebook\users\views.py:107
+msgid "profile__success_message"
+msgstr "Изменения успешно сохранены!"

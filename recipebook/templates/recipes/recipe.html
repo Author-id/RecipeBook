@@ -5,8 +5,6 @@
 {{recipe.name}}
 {% endblock %}
 
-{% block bootstrapjs %}{% endblock %}
-
 {% block content %}
 	<h2 class="text-center mt-4">{{recipe.name}}</h2>
 
@@ -52,12 +50,14 @@
 					{% endif %}
 					{% translate "recipe__rate" as submit_text_rate %}
 					{% include "includes/form.html" with form=rating_form submit_text=submit_text_rate %}
+					{% endif %}
 				</div>
+				{% if user_rating %}
 				<div>
 					{% translate "recipe__delete_rate" as submit_delete_text %}
 					{% include "includes/form.html" with form=delete_rating_form submit_text=submit_delete_text %}
-					{% endif %}
 				</div>
+				{% endif %}
 				{% if user.is_authenticated %}
 				<div>
 					{% if user_cooked %}
@@ -76,7 +76,9 @@
 				<h5>Ваш комментарии {% if not user_comment %}(новый){% endif %}</h5>
 				{{ comment_form.media }}
 				{% include "includes/form.html" with form=comment_form %}
+				{% if user_comment %}
 				{% include "includes/form.html" with form=delete_comment_form submit_text="Удалить комментарии" %}
+				{% endif %}
 			</div>
 			{% endif %}
 			<div class="d-flex flex-column gap-2">
