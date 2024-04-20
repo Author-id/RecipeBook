@@ -103,17 +103,16 @@ class Cooked(models.Model):
     )
 
     class Meta:
+        unique_together = ("author", "recipe")
         verbose_name = _("feedback__model__cooked__verbose_name")
         verbose_name_plural = _("feedback__model__cooked__verbose_name_plural")
-        unique_together = (
-            (
-                "author",
-                "recipe",
-            ),
-        )
 
     def __str__(self):
-        return f"{self.user.username} prepared {self.recipe.title}"
+        return _("feedback__model__cooked__str") % {
+            "id": self.id,
+            "author": self.author_id,
+            "recipe": self.recipe_id,
+        }
 
 
 __all__ = []

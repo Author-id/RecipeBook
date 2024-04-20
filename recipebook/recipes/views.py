@@ -13,7 +13,7 @@ from feedback.forms import (
     DeleteRatingForm,
     RatingForm,
 )
-from feedback.forms import CookForm, DeleteCookForm
+from feedback.forms import CookedForm, DeleteCookedForm
 from feedback.models import Comment, Cooked, Rate
 from recipes.forms import RecipeForm
 from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
@@ -56,14 +56,7 @@ class RecipeView(DetailView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-
         recipe = self.object
-        user_cooked = None
-        if self.request.user.is_authenticated:
-            user_cooked = Cooked.objects.filter(
-                author=self.request.user,
-                recipe=recipe,
-            ).first()
 
         ratings = Rate.objects.filter(recipe=recipe).aggregate(
             sum=Sum("value"),
@@ -73,8 +66,13 @@ class RecipeView(DetailView):
         rating_sum = ratings["sum"] or 0
 
         user_rating = None
+        user_cooked = None
         if self.request.user.is_authenticated:
             user_rating = Rate.objects.filter(
+                author=self.request.user,
+                recipe=recipe,
+            ).first()
+            user_cooked = Cooked.objects.filter(
                 author=self.request.user,
                 recipe=recipe,
             ).first()
@@ -93,6 +91,8 @@ class RecipeView(DetailView):
                 "delete_rating_form": DeleteRatingForm(),
                 "comment_form": CommentForm(instance=user_comment),
                 "delete_comment_form": DeleteCommentForm(),
+                "cooked_form": CookedForm(),
+                "delete_cooked_form": DeleteCookedForm(),
                 "rating": (
                     round(rating_sum / rating_count, 2)
                     if rating_count > 0
@@ -101,10 +101,8 @@ class RecipeView(DetailView):
                 "rating_count": rating_count,
                 "user_rating": user_rating,
                 "user_comment": user_comment,
-                "comments": comments,
                 "user_cooked": user_cooked,
-                "cook_form": CookForm(instance=user_cooked),
-                "delete_cook_form": DeleteCookForm(),
+                "comments": comments,
             },
         )
 
@@ -120,8 +118,8 @@ class RecipeView(DetailView):
         comment_form = CommentForm(request.POST, instance=user_comment)
         delete_rating_form = DeleteRatingForm(request.POST)
         delete_comment_form = DeleteCommentForm(request.POST)
-        cook_form = CookForm(request.POST, instance=user_cooked)
-        delete_cook_form = DeleteCookForm(request.POST)
+        add_cooked_form = CookedForm(request.POST)
+        delete_cook_form = DeleteCookedForm(request.POST)
 
         if self.request.user.is_authenticated:
             if rating_form.is_valid():
@@ -139,22 +137,16 @@ class RecipeView(DetailView):
                 user_rating.delete()
                 return redirect(reverse("recipes:recipe", args=[pk]))
 
-            if self.request.user.is_authenticated:
+            if not user_cooked and add_cooked_form.is_valid():
+                Cooked.objects.create(
+                    author=self.request.user,
+                    recipe=self.object,
+                )
+                return redirect(reverse("recipes:recipe", args=[pk]))
 
-                if user_cooked and delete_cook_form.is_valid():
-                    user_cooked.delete()
-                    return redirect(reverse("recipes:recipe", args=[pk]))
-
-                if cook_form.is_valid():
-                    if user_cooked:
-                        cook_form.save()
-                    else:
-                        user_cooked = cook_form.save(False)
-                        user_cooked.author = self.request.user
-                        user_cooked.recipe = self.object
-                        user_cooked.save()
-
-                    return redirect(reverse("recipes:recipe", args=[pk]))
+            if user_cooked and delete_cook_form.is_valid():
+                user_cooked.delete()
+                return redirect(reverse("recipes:recipe", args=[pk]))
 
             if comment_form.is_valid():
                 if user_comment:
