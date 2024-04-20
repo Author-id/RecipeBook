@@ -1,5 +1,4 @@
 from datetime import timedelta
-from typing import Any
 
 from django.conf import settings
 from django.contrib import messages
@@ -7,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -17,7 +17,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import gettext
 from django.views.generic import FormView, TemplateView, UpdateView, View
 
-from users.forms import SignUpForm, UserProfileForm
+from users.forms import SignUpForm, UserForm
 from users.models import User
 
 
@@ -97,22 +97,13 @@ class ActivateDoneView(TemplateView):
 
 class ProfileView(LoginRequiredMixin, UpdateView):
     template_name = "users/profile.html"
-    form_class = UserProfileForm
+    form_class = UserForm
     success_url = reverse_lazy("users:profile")
 
-    def get_form_kwargs(self) -> dict[str, Any]:
-        kwargs = super().get_form_kwargs()
-        kwargs.update(
-            instance={
-                "user": self.object,
-            },
-        )
-        return kwargs
-
-    def get_object(self, queryset: Any = None) -> Any:
+    def get_object(self, queryset: QuerySet | None = None) -> User:
         return self.request.user
 
-    def form_valid(self, form: UserProfileForm) -> HttpResponse:
+    def form_valid(self, form: UserForm) -> HttpResponse:
         messages.success(self.request, gettext("profile__success_message"))
         return super().form_valid(form)
 

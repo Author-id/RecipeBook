@@ -1,8 +1,7 @@
 from typing import Any
 
-from betterforms.multiform import MultiModelForm
 from django import forms
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 from core.forms import BaseForm
 from users import models
@@ -10,27 +9,21 @@ from users import models
 
 class SignUpForm(UserCreationForm, BaseForm):
     def clean(self) -> dict[str, Any]:
-        email = self.cleaned_data["email"]
+        email = self.cleaned_data[models.User.email.field.name]
         email = models.UserManager.normalize_email(email)
-        self.cleaned_data["email"] = email
+        self.cleaned_data[models.User.email.field.name] = email
 
         return self.cleaned_data
 
     class Meta(UserCreationForm.Meta):
         model = models.User
-        fields = ["username", "email"]
+        fields = [
+            models.User.username.field.name,
+            models.User.email.field.name,
+        ]
 
 
-class UserForm(UserChangeForm, BaseForm):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.fields.pop("password")
-
-    class Meta(UserChangeForm.Meta):
-        fields = ["first_name", "last_name"]
-
-
-class ProfileForm(forms.ModelForm, BaseForm):
+class UserForm(forms.ModelForm, BaseForm):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.fields[models.User.trusted.field.name].disabled = True
@@ -39,17 +32,12 @@ class ProfileForm(forms.ModelForm, BaseForm):
     class Meta:
         model = models.User
         fields = [
+            models.User.first_name.field.name,
+            models.User.last_name.field.name,
             models.User.email.field.name,
             models.User.trusted.field.name,
             models.User.image.field.name,
         ]
-
-
-class UserProfileForm(MultiModelForm):
-    form_classes = {
-        "user": UserForm,
-        "profile": ProfileForm,
-    }
 
 
 __all__ = []

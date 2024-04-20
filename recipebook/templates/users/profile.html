@@ -19,8 +19,8 @@
 				{% endfor %}
 			{% endif %}
 			<div class="d-flex justify-content-center mb-3">
-				{% if user.profile.image %}
-				<img src="{{user.profile.get_image_128x128.url}}" alt="{{user.username}}" width="128" height="128" class="rounded-circle flex-shrink-0">
+				{% if user.image %}
+				<img src="{{user.get_image_128x128.url}}" alt="{{user.username}}" width="128" height="128" class="rounded-circle flex-shrink-0">
 				{% else %}
 				<img src="{% static 'img/img.svg' %}" alt="{{user.username}}" width="128" height="128" class="rounded-circle flex-shrink-0">
 				{% endif %}
