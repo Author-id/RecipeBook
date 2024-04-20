@@ -2,9 +2,11 @@ from datetime import timedelta
 
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -13,9 +15,9 @@ from django.utils import timezone
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import gettext
-from django.views.generic import FormView, TemplateView, View
+from django.views.generic import FormView, TemplateView, UpdateView, View
 
-from users.forms import SignUpForm
+from users.forms import SignUpForm, UserForm
 from users.models import User
 
 
@@ -91,6 +93,19 @@ class ActivateView(View):
 
 class ActivateDoneView(TemplateView):
     template_name = "users/activate_done.html"
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    template_name = "users/profile.html"
+    form_class = UserForm
+    success_url = reverse_lazy("users:profile")
+
+    def get_object(self, queryset: QuerySet | None = None) -> User:
+        return self.request.user
+
+    def form_valid(self, form: UserForm) -> HttpResponse:
+        messages.success(self.request, gettext("profile__success_message"))
+        return super().form_valid(form)
 
 
 def get_user(uidb64: str) -> User | None:
