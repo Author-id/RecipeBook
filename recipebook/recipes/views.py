@@ -13,7 +13,8 @@ from feedback.forms import (
     DeleteRatingForm,
     RatingForm,
 )
-from feedback.models import Comment, Rate
+from feedback.forms import CookedForm, DeleteCookedForm
+from feedback.models import Comment, Cooked, Rate
 from recipes.forms import RecipeForm
 from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 
@@ -55,8 +56,8 @@ class RecipeView(DetailView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-
         recipe = self.object
+
         ratings = Rate.objects.filter(recipe=recipe).aggregate(
             sum=Sum("value"),
             count=Count("value"),
@@ -65,8 +66,13 @@ class RecipeView(DetailView):
         rating_sum = ratings["sum"] or 0
 
         user_rating = None
+        user_cooked = None
         if self.request.user.is_authenticated:
             user_rating = Rate.objects.filter(
+                author=self.request.user,
+                recipe=recipe,
+            ).first()
+            user_cooked = Cooked.objects.filter(
                 author=self.request.user,
                 recipe=recipe,
             ).first()
@@ -85,6 +91,8 @@ class RecipeView(DetailView):
                 "delete_rating_form": DeleteRatingForm(),
                 "comment_form": CommentForm(instance=user_comment),
                 "delete_comment_form": DeleteCommentForm(),
+                "cooked_form": CookedForm(),
+                "delete_cooked_form": DeleteCookedForm(),
                 "rating": (
                     round(rating_sum / rating_count, 2)
                     if rating_count > 0
@@ -93,6 +101,7 @@ class RecipeView(DetailView):
                 "rating_count": rating_count,
                 "user_rating": user_rating,
                 "user_comment": user_comment,
+                "user_cooked": user_cooked,
                 "comments": comments,
             },
         )
@@ -104,10 +113,14 @@ class RecipeView(DetailView):
         context = self.get_context_data()
         user_rating = context["user_rating"]
         user_comment = context["user_comment"]
+        user_cooked = context["user_cooked"]
         rating_form = RatingForm(request.POST, instance=user_rating)
         comment_form = CommentForm(request.POST, instance=user_comment)
         delete_rating_form = DeleteRatingForm(request.POST)
         delete_comment_form = DeleteCommentForm(request.POST)
+        add_cooked_form = CookedForm(request.POST)
+        delete_cook_form = DeleteCookedForm(request.POST)
+
         if self.request.user.is_authenticated:
             if rating_form.is_valid():
                 if user_rating:
@@ -122,6 +135,17 @@ class RecipeView(DetailView):
 
             if user_rating and delete_rating_form.is_valid():
                 user_rating.delete()
+                return redirect(reverse("recipes:recipe", args=[pk]))
+
+            if not user_cooked and add_cooked_form.is_valid():
+                Cooked.objects.create(
+                    author=self.request.user,
+                    recipe=self.object,
+                )
+                return redirect(reverse("recipes:recipe", args=[pk]))
+
+            if user_cooked and delete_cook_form.is_valid():
+                user_cooked.delete()
                 return redirect(reverse("recipes:recipe", args=[pk]))
 
             if comment_form.is_valid():

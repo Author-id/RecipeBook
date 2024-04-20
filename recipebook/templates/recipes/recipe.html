@@ -58,6 +58,15 @@
 					{% include "includes/form.html" with form=delete_rating_form submit_text=submit_delete_text %}
 					{% endif %}
 				</div>
+				{% if user.is_authenticated %}
+				<div>
+					{% if user_cooked %}
+					{% include "includes/form.html" with form=delete_cooked_form submit_text="Убрать отметку о приготовлении" %}
+					{% else %}
+					{% include "includes/form.html" with form=cooked_form submit_text="Отметить как приготовленное" %}
+					{% endif %}
+				</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="col-12 col-md-8">

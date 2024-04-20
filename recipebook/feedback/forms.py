@@ -28,4 +28,12 @@ class DeleteCommentForm(BaseForm):
     delete_comment = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
 
+class CookedForm(BaseForm):
+    add_cooked = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+
+class DeleteCookedForm(BaseForm):
+    delete_cooked = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+
 __all__ = []
