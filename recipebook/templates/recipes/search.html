@@ -19,8 +19,8 @@
 			<div class="mb-4 d-grid" style="grid-template-columns: 1fr 1fr;">
 				<div>
 					<div>
-						<span>Название:</span>
-						<input autocomplete="off" type="text" id="search-name">
+                        <span>Название:</span>
+                        <input autocomplete="off" type="text" id="search-name" class="form-control">
 					</div>
 					<div>
 						<span>Содержатся: </span>
@@ -34,7 +34,7 @@
 				<div>
 					<span>Ингредиенты:</span>
 					<div class="search-container" id="search-ingredient-container">
-						<input autocomplete="off" type="text" id="search-ingredient-input">
+						<input autocomplete="off" type="text" id="search-ingredient-input" class="form-control ms-2">
 						<div class="search" id="search-ingredient-list">
 							{% for ingredient in ingredients %}
 							<div class="search__item" data-id="{{ingredient.id}}">
