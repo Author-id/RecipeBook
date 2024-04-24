@@ -5,7 +5,13 @@ from django.core.exceptions import ValidationError
 from django.forms.renderers import TemplatesSetting
 
 from core.forms import BaseForm
-from recipes.models import Ingredient, IngredientUnit, Recipe, RecipeIngredient, RecipeState
+from recipes.models import (
+    Ingredient,
+    IngredientUnit,
+    Recipe,
+    RecipeIngredient,
+    RecipeState,
+)
 
 
 class IngredientsWidget(forms.Widget):
