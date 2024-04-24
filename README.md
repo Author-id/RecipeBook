@@ -2,16 +2,15 @@
 
 ![Статус пайплайна](https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2/badges/main/pipeline.svg)
 
+Кулинарный сайт с рецептами - Recipe Book!
+
+Это легкий в использовании сайт, который поможет Вам с готовкой.
+На нём Вы найдёте множество вкусных рецептов, благодаря удобному поиску по категориям, ингредиентам и многому другому. Каждый рецепт Вы можете обсудить и задать вопросы автору в комментариях.
+
 ## Требования к системе
 
 * Python 3.11
 
-## ER-диаграмма
-
-![ER-диаграмма](/ER.jpg)
-<!--
-https://www.quickdatabasediagrams.com/
--->
 
 ## Установка
 ```console
@@ -147,23 +146,6 @@ git clone https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2.git
 
    ```console
    python manage.py createsuperuser
-   ```
-
-## Тестирование
-
-1. Выполните пункты 1-6 раздела "Запуск проекта"
-2. Запустите тесты
-
-   для Mac/Linux:
-
-   ```console
-   python3 manage.py test
-   ```
-
-   для Windows:
-
-   ```console
-   python manage.py test
    ```
 
 

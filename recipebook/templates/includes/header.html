@@ -14,10 +14,10 @@
 			{% with request.resolver_match.view_name as view_name %}
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav me-auto mb-2 mb-md-0">
-					{% comment %} <li class="nav-item">
-						<a class="nav-link {% if view_name == '' %}active{% endif %}"
-							href="{% url '' %}">{% translate "nav_menu__home" %}</a>
-					</li> {% endcomment %}
+					<li class="nav-item">
+						<a class="nav-link {% if view_name == 'recipes:recipe-add' %}active{% endif %}"
+							href="{% url 'recipes:recipe-add' %}">{% translate "nav_menu__add_recipe" %}</a>
+					</li>
 					{% if user.is_superuser %}
 					<li class="nav-item">
 						<a class="nav-link"

@@ -1,11 +1,13 @@
 from typing import Any
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count, Sum
+from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import DetailView, FormView, ListView, TemplateView
 
 from feedback.forms import (
     CommentForm,
@@ -166,10 +168,27 @@ class RecipeView(DetailView):
         return self.render_to_response(context)
 
 
-class RecipeEditView(DetailView):
+class RecipeEditView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     template_name = "recipes/recipe_edit.html"
     queryset = Recipe.objects.published()
     context_object_name = "recipe"
+    recipe = None
+
+    def get_object(self, queryset: QuerySet = None) -> Recipe:
+        if self.recipe is None:
+            self.recipe = super().get_object(queryset)
+
+        return self.recipe
+
+    def test_func(self) -> bool:
+        if not self.request.user.is_authenticated:
+            return False
+
+        if self.request.user.is_superuser:
+            return True
+
+        item = self.get_object()
+        return item.author_id == self.request.user.id
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -194,6 +213,15 @@ class RecipeEditView(DetailView):
                 return redirect(reverse("recipes:recipe-edit", args=[pk]))
 
         return self.render_to_response(context)
+
+
+class RecipeAddView(LoginRequiredMixin, FormView):
+    template_name = "recipes/recipe_edit.html"
+    form_class = RecipeForm
+
+    def form_valid(self, form: RecipeForm) -> HttpResponse:
+        recipe = form.save(self.request.user.id)
+        return redirect(reverse("recipes:recipe", args=[recipe.pk]))
 
 
 __all__ = []

@@ -25,6 +25,11 @@ urlpatterns = [
         views.RecipeEditView.as_view(),
         name="recipe-edit",
     ),
+    path(
+        "recipe/add",
+        views.RecipeAddView.as_view(),
+        name="recipe-add",
+    ),
 ]
 
 

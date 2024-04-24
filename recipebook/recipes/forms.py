@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.forms.renderers import TemplatesSetting
 
 from core.forms import BaseForm
-from recipes.models import Ingredient, IngredientUnit, Recipe, RecipeIngredient
+from recipes.models import Ingredient, IngredientUnit, Recipe, RecipeIngredient, RecipeState
 
 
 class IngredientsWidget(forms.Widget):
@@ -163,11 +163,17 @@ class RecipeForm(forms.ModelForm, BaseForm):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        instance = kwargs["instance"]
-        self.initial["ingredients"] = instance.ingredients.all()
+        if "instance" in kwargs:
+            instance = kwargs["instance"]
+            self.initial["ingredients"] = instance.ingredients.all()
+        else:
+            self.initial["ingredients"] = []
 
-    def save(self, commit: bool = True) -> Recipe:
-        instance: Recipe = super().save(commit)
+    def save(self, author_id: int) -> Recipe:
+        instance: Recipe = super().save(False)
+        instance.author_id = author_id
+        instance.state = RecipeState.PUBLISHED
+        instance.save()
         ingredients_quary = instance.ingredients.all()
         ingredients_current = list(ingredients_quary)
         ingredients_new = self.cleaned_data["ingredients"]

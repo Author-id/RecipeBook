@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-20 15:52+0300\n"
+"POT-Creation-Date: 2024-04-25 00:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -333,27 +333,31 @@ msgstr "Set"
 msgid "form__send"
 msgstr "sending form"
 
-#: .\recipebook\templates\includes\header.html:25
+#: .\recipebook\templates\includes\header.html:19
+msgid "nav_menu__add_recipe"
+msgstr "Add recipe"
+
+#: .\recipebook\templates\includes\header.html:24
 msgid "nav_menu__admin"
 msgstr "Admin page"
 
-#: .\recipebook\templates\includes\header.html:38
+#: .\recipebook\templates\includes\header.html:37
 msgid "header__user__profile"
 msgstr "Profile"
 
-#: .\recipebook\templates\includes\header.html:39
+#: .\recipebook\templates\includes\header.html:38
 msgid "header__user__change_password"
 msgstr "Change password"
 
-#: .\recipebook\templates\includes\header.html:41
+#: .\recipebook\templates\includes\header.html:40
 msgid "header__user__logout"
 msgstr "Log out"
 
-#: .\recipebook\templates\includes\header.html:47
+#: .\recipebook\templates\includes\header.html:46
 msgid "header__user__login"
 msgstr "Log in"
 
-#: .\recipebook\templates\includes\header.html:50
+#: .\recipebook\templates\includes\header.html:49
 msgid "header__user__signup"
 msgstr "Sign Up"
 

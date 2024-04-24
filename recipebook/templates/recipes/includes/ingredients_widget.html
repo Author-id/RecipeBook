@@ -97,7 +97,7 @@
 				const ingredients = Array.from(ingredient_list.children).slice(0, -1).map(el =>
 				{
 					const ingredient = { el, name: el.innerText.trim(), nameNorm: normalize(el.innerText), id: el.getAttribute("data-id") }
-					el.addEventListener("click", () => {
+					el.addEventListener("mousedown", () => {
 						selectIngredient(ingredient);
 					});
 					return ingredient;
@@ -111,7 +111,7 @@
 					ingredient_list.classList.add("ingredients-widget-search_visible")
 				})
 				ingredient_input.addEventListener("blur", () => {
-					ingredient_list.classList.remove("ingredients-widget-search_visible");
+					ingredient_list.classList.remove("ingredients-widget-search_visible"),
 					setValue();
 				})
 				ingredient_input.addEventListener("keyup", e =>
