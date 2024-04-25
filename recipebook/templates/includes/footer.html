@@ -1,7 +1,8 @@
 {% load static %}
 {% load i18n %}
 <footer class="footer mt-3 py-3 bg-light">
-	<form action="{% url 'set_language' %}" method="post" class="d-inline-flex ">
+    <div class="container">
+        <form action="{% url 'set_language' %}" method="post" class="d-inline-flex ">
 		{% csrf_token %}
 		<input name="next" type="hidden" value="{{ redirect_to }}">
 		<select name="language" class="form-select">
@@ -16,4 +17,6 @@
 		</select>
 		<button type="submit" class="btn btn-primary">{% translate "footer__set_lang" %}</button>
 	</form>
+    </div>
+
 </footer>
