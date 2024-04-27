@@ -17,9 +17,9 @@
 	</div>
 
     <div>
-        <h2 class="mt-4">Последние добавленныe</h2>
+        <h2 class="mt-4">Самые популярные</h2>
         <div class="row">
-            {% for recipe in last_5_recipes %}
+            {% for recipe in most_popular_5 %}
             <div class="col-md-4">
                 <div class="card mb-4">
                     <img class="card-img-top" src="{{ recipe.get_image_500.url }}">
@@ -35,9 +35,9 @@
     <div>
 
     <div>
-        <h2 class="mt-4">Самые популярные</h2>
+        <h2 class="mt-4">Последние добавленныe</h2>
         <div class="row">
-            {% for recipe in most_popular_5 %}
+            {% for recipe in last_5_recipes %}
             <div class="col-md-4">
                 <div class="card mb-4">
                     <img class="card-img-top" src="{{ recipe.get_image_500.url }}">

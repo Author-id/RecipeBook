@@ -23,7 +23,7 @@ from recipes.models import Category, Ingredient, Kitchen, Recipe, RecipeLevel
 class MainView(TemplateView):
     template_name = "recipes/main.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         last_5_recipes = Recipe.objects.order_by("-created")[:5]
         most_popular_5 = Recipe.objects.order_by("created")[:5]
