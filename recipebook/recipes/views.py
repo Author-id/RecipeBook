@@ -25,10 +25,10 @@ class MainView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        last_5_recipes = Recipe.objects.order_by('-created')[:5]
-        most_popular_5 = Recipe.objects.order_by('created')[:5]
-        context['last_5_recipes'] = last_5_recipes
-        context['most_popular_5'] = most_popular_5
+        last_5_recipes = Recipe.objects.order_by("-created")[:5]
+        most_popular_5 = Recipe.objects.order_by("created")[:5]
+        context["last_5_recipes"] = last_5_recipes
+        context["most_popular_5"] = most_popular_5
         return context
 
 
