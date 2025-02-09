@@ -14,7 +14,7 @@
 
 ## Установка
 ```console
-git clone https://gitlab.crja72.ru/django/2024/spring/course/projects/team-2.git
+git clone https://github.com/Author-id/RecipeBook.git
 ```
 
 ## Запуск проекта
